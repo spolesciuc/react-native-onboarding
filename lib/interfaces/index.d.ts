@@ -4,6 +4,6 @@ export interface ISlide {
 }
 export declare type Slides = Array<ISlide>;
 export interface ICollection {
-     slides: Slides;
+    slides: Slides;
 }
 export declare type Collections = Array<ICollection>;

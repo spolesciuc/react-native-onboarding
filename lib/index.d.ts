@@ -6,5 +6,3 @@ declare type Props = {
 };
 declare const Onboarding: React.FC<Props>;
 export default Onboarding;
-
-
