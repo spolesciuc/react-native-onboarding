@@ -15,12 +15,13 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./lib/* && yarn lint && tsc",
+    "build": "rm -rf ./lib/* && yarn lint && tsc && yarn prettier",
     "prepare": "yarn build",
     "clean": "rimraf lib",
     "lint": "eslint --fix --cache --cache-location ./node_modules/.cache/eslint .",
     "prepublish": "yarn clean && yarn build",
     "postpublish": "git push && git push --tags",
+    "prettier": "prettier --write \"{docs,example,src,lib}/**/*.{json,md,js,jsx,ts,tsx}\"",
     "version": "git add -A",
     "watch:onboarding": "yarn tsc --watch"
   },

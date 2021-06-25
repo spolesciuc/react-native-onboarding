@@ -1,4 +1,4 @@
 declare const styles: {
-    wrapper: {};
+  wrapper: {};
 };
 export default styles;
