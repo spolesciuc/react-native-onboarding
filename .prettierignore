@@ -1,0 +1,9 @@
+.github
+.vscode
+lib
+node_modules
+android
+ios
+package.json
+renovate.json
+tsconfig.json
