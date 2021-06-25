@@ -21,7 +21,7 @@
     "lint": "eslint --fix --cache --cache-location ./node_modules/.cache/eslint .",
     "prepublish": "yarn clean && yarn build",
     "postpublish": "git push && git push --tags",
-    "prettier": "prettier --write \"{docs,src,lib}/**/*.{json,md,js,jsx,ts,tsx}\"",
+    "prettier": "prettier --write \"{docs,src}/**/*.{json,md,js,jsx,ts,tsx}\"",
     "version": "git add -A",
     "watch:onboarding": "yarn tsc --watch"
   },
