@@ -17,8 +17,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "postversion": "sh ./post-version.sh",
-    "build": "tsc --p tsconfig-build.json",
+    "build": "rm -rf ./lib/* && yarn lint && tsc",
+    "prepare": "yarn build",
     "clean": "rimraf lib",
     "lint": "eslint --fix --cache --cache-location ./node_modules/.cache/eslint .",
     "prepublish": "yarn clean && yarn build",
