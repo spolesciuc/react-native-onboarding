@@ -1,29 +1,25 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "react-native-onboarding": ["./src/index"]
-    },
-    "outDir": "lib",
-    "composite": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "outDir": "lib/",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "jsx": "react",
-    "lib": ["esnext", "dom"],
-    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "target": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
-    "isolatedModules": true,
-  }
+    "pretty": true,
+    "removeComments": false,
+    "sourceMap": false,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedParameters": true
+  },
+  "include": ["src"]
 }
