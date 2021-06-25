@@ -1,0 +1,4 @@
+/src/ui-components/components/event-ico/models/*.ts
+/src/ui-components/components/country-flag-ico/models/*.ts
+*.spec.js
+*._test_.js
