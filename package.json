@@ -2,7 +2,7 @@
   "name": "@stanislavpoleshuk/react-native-onboarding",
   "version": "0.0.2",
   "description": "A pure JavaScript <Onboarding /> component for react-native",
-  "main": "lib/commonjs/index.js",
+  "main": "lib/src/index.js",
   "files": [
     "lib/**/*"
   ],
@@ -33,35 +33,12 @@
     "react-native": ">=0.59.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.14.3",
-    "@babel/core": "^7.14.6",
-    "@babel/helper-validator-identifier": "7.14.0",
-    "@babel/parser": "^7.14.7",
-    "@babel/plugin-proposal-class-properties": "7.13.0",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.14.2",
-    "@babel/plugin-proposal-numeric-separator": "7.14.2",
-    "@babel/plugin-proposal-optional-chaining": "7.14.2",
-    "@babel/plugin-proposal-private-methods": "7.13.0",
-    "@babel/plugin-proposal-private-property-in-object": "7.14.0",
-    "@babel/plugin-transform-flow-strip-types": "7.13.0",
-    "@babel/plugin-transform-runtime": "7.14.3",
-    "@babel/plugin-transform-typescript": "^7.14.6",
-    "@babel/preset-env": "7.14.4",
-    "@babel/preset-flow": "7.13.13",
-    "@babel/preset-react": "7.13.13",
-    "@babel/preset-typescript": "^7.14.5",
     "@react-native-community/eslint-config": "^3.0.0",
-    "@stavalfi/babel-plugin-module-resolver-loader": "^1.4.0",
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.11",
     "@types/react-native": "^0.64.10",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.28.0",
-    "babel-eslint": "10.1.0",
-    "babel-loader": "8.2.2",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "babel-plugin-react-native-web": "0.16.3",
-    "babel-plugin-transform-inline-environment-variables": "0.4.3",
     "eslint": "7.28.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",
@@ -73,16 +50,14 @@
     "eslint-plugin-react-hooks": "^4.0.2",
     "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "metro-react-native-babel-preset": "0.66.0",
     "prettier": "^2.0.5",
     "react": "^17.0.2",
     "react-native": "^0.64.2",
     "react-native-typescript-transformer": "^1.2.13",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "tslib": "^2.3.0"
   },
   "dependencies": {
-    "react-native-webp-format": "^1.1.2",
-    "tslib": "^2.3.0"
   },
   "resolutions": {
     "@types/react": "^17"
