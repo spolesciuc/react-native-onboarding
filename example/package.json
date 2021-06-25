@@ -1,10 +1,10 @@
 {
-  "name": "onboardingexample",
+  "name": "@stanislavpoleshuk/react-native-onboardingexample",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "pod install --project-directory=./ios && react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"

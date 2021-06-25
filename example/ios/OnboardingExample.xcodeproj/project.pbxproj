@@ -145,7 +145,6 @@
 				DDFFCEF8A26B4BED05925526 /* Pods-OnboardingExample-OnboardingExampleTests.debug.xcconfig */,
 				62A131A39234CCB16A203B36 /* Pods-OnboardingExample-OnboardingExampleTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7DTXXV3598;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = OnboardingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7DTXXV3598;
 				INFOPLIST_FILE = OnboardingExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
