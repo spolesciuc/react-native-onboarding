@@ -2,6 +2,15 @@ import React from 'react';
 import { Dimensions, Image, ScrollView } from 'react-native';
 
 const App = () => {
+  // return (
+  //   <Onboarding
+  //     data={[
+  //       {
+  //         slides: [{ source: require('./assets/Onbording_4.webp') }],
+  //       },
+  //     ]}
+  //   />
+  // );
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Image
