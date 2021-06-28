@@ -8,6 +8,7 @@ const Context = React.createContext<CollectionContextProps>({
   onNext: () => {},
   onPrev: () => {},
   slideProgress: 0,
+  onCollectionEnd: () => {},
 });
 
 export default Context;

@@ -1,7 +1,9 @@
 import { ImageSourcePropType } from 'react-native';
+import React from 'react';
 
 export type SlidePropType = {
   source: ImageSourcePropType;
+  renderBottomBar?: () => React.ReactElement;
 };
 export type Slides = Array<SlidePropType>;
 

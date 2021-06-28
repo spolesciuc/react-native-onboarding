@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { SlidePropType } from '../../types';
+import {SlidePropType} from '../../types';
+import React from 'react';
+
 declare type Props = SlidePropType & {};
 declare const Slide: React.FC<Props>;
 export default Slide;

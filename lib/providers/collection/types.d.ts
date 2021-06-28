@@ -5,4 +5,5 @@ export declare type CollectionContextProps = {
     onPauseEnd: () => void;
     onNext: () => void;
     onPrev: () => void;
+    onCollectionEnd: () => void;
 };

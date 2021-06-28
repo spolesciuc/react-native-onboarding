@@ -1,6 +1,6 @@
 declare const useOnboarding: () => {
     isVisible: boolean;
-    onShow: () => void;
+    onShow: (nextCollectionId: string) => void;
     onHide: () => void;
     collectionId: string | undefined;
     onChangeCollectionId: (nextCollectionId: string) => void;

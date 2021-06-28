@@ -18,11 +18,17 @@ const CollectionProvider: React.FC<Props> = ({ children }) => {
     setIsPaused(false);
   }, []);
 
-  const onNext = React.useCallback(() => {}, []);
+  const onNext = React.useCallback(() => {
+    console.log('@onNext');
+  }, []);
 
-  const onPrev = React.useCallback(() => {}, []);
+  const onPrev = React.useCallback(() => {
+    console.log('@onPrev');
+  }, []);
 
   const onCollectionEnd = React.useCallback(() => {}, []);
+
+  console.log(isPaused, '@isPaused');
 
   const value = React.useMemo<CollectionContextProps>(() => {
     return {

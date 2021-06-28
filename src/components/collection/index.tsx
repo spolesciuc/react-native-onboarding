@@ -7,12 +7,13 @@ type Props = CollectionPropType & {
   onAllStoriesEnd?: (collectionId: string) => void;
 };
 
-const Collection: React.FC<Props> = ({ slides = [], startIndex = 0 }) => {
-  const [index] = React.useState(startIndex);
-
+const Collection: React.FC<Props> = ({ slides = [] }) => {
   return (
     <View>
-      <Slide source={slides[index].source} />
+      <Slide
+        source={slides[0].source}
+        renderBottomBar={slides[0].renderBottomBar}
+      />
     </View>
   );
 };

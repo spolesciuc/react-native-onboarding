@@ -19,8 +19,9 @@ const OnboardingProvider: React.FC<Props> = ({
     setSelectionId(nextCollectionId);
   }, []);
 
-  const onShow = React.useCallback(() => {
+  const onShow = React.useCallback((nextCollectionId: string) => {
     setIsVisible(true);
+    setSelectionId(nextCollectionId);
   }, []);
 
   const onHide = React.useCallback(() => {

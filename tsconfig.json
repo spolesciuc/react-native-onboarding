@@ -18,7 +18,7 @@
     "strictPropertyInitialization": false,
     "noUnusedLocals": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
   },
   "include": ["src"]
 }

@@ -2,5 +2,4 @@ example
 src
 .eslintrc
 .prettierrc
-babel.config
 tsconfig.json
