@@ -1,14 +1,18 @@
-import * as React from 'react';
-import { ICollection } from '../../interfaces';
+import { CollectionPropType } from '../../types';
 import { View } from 'react-native';
+import React from 'react';
 import Slide from '../slide';
 
-type Props = ICollection & {};
+type Props = CollectionPropType & {
+  onAllStoriesEnd?: (collectionId: string) => void;
+};
 
-const Collection: React.FC<Props> = ({ slides }) => {
+const Collection: React.FC<Props> = ({ slides = [], startIndex = 0 }) => {
+  const [index] = React.useState(startIndex);
+
   return (
     <View>
-      <Slide source={slides[0].source} />
+      <Slide source={slides[index].source} />
     </View>
   );
 };

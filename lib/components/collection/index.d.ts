@@ -1,5 +1,7 @@
-import * as React from 'react';
-import { ICollection } from '../../interfaces';
-declare type Props = ICollection & {};
+import { CollectionPropType } from '../../types';
+import React from 'react';
+declare type Props = CollectionPropType & {
+    onAllStoriesEnd?: (collectionId: string) => void;
+};
 declare const Collection: React.FC<Props>;
 export default Collection;

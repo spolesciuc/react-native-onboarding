@@ -10,7 +10,6 @@
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noImplicitAny": false,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
     "pretty": true,
