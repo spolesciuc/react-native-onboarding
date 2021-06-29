@@ -2,7 +2,7 @@ declare const styles: {
     wrapper: {
         zIndex: number;
         height: number;
-        flexDirection: 'row';
+        flexDirection: "row";
         paddingHorizontal: number;
         width: number;
     };

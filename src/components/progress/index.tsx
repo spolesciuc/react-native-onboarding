@@ -1,50 +1,39 @@
-import { StyleSheet, View } from 'react-native';
+import { Animated, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import React from 'react';
 import styles from './styles';
 
 export type ProgressProps = {
-  progress: number;
+  progress: Animated.AnimatedValue;
   color: string;
   unfilledColor: string;
 };
 
 type Props = ProgressProps & {
   completed: boolean;
+  active: boolean;
 };
 
-const Progress: React.FC<Props> = ({ completed, progress }) => {
-  const value = React.useMemo(() => {
-    if (completed) {
-      return 1;
-    }
-    if (progress < 0) {
-      console.warn('Progress is less than 0');
-      return 0;
-    } else if (progress > 0) {
-      console.warn('Progress is greater than 0');
-      return 1;
-    }
-    return Math.round(progress * 100) / 100;
-  }, [completed, progress]);
-
+const Progress: React.FC<Props> = ({ completed, progress, active }) => {
   const styled = React.useMemo(() => {
-    return StyleSheet.flatten([
-      {
-        flex: value,
-      },
-    ]);
-  }, [value]);
+    let stateStyle: Animated.AnimatedProps<StyleProp<ViewStyle>> = {
+      flex: 0,
+    };
+    if (completed) {
+      stateStyle = {
+        flex: 1,
+      };
+    } else if (active) {
+      stateStyle = {
+        flex: progress,
+      };
+    }
+
+    return StyleSheet.flatten([styles.progress, stateStyle]);
+  }, [active, completed, progress]);
 
   return (
-    <View
-      style={[
-        styles.wrapper,
-        {
-          backgroundColor:
-            '#' + Math.floor(Math.random() * 16777215).toString(16),
-        },
-      ]}>
-      <View style={styled} />
+    <View style={[styles.wrapper]}>
+      <Animated.View style={styled} />
     </View>
   );
 };

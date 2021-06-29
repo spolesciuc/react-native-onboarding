@@ -2,7 +2,7 @@ import {Collections} from '../../types';
 import React from 'react';
 
 declare type Props = {
-    duration: number;
+    defaultDuration: number;
     collectionId: string | undefined;
     collections: Collections;
 };

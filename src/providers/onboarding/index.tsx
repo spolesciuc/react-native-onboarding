@@ -47,7 +47,7 @@ const OnboardingProvider: React.FC<Props> = ({
   return (
     <Context.Provider value={value}>
       <CollectionProvider
-        duration={duration}
+        defaultDuration={duration}
         collectionId={collectionId}
         collections={collections}
       />

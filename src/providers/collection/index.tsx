@@ -3,20 +3,25 @@ import { CollectionPropType, Collections } from '../../types';
 import Collection from '../../components/collection';
 import Context from './context';
 import React from 'react';
+import useAutoPlay from '../../hooks/useAutoPlay';
 
 type Props = {
-  duration: number;
+  defaultDuration: number;
   collectionId: string | undefined;
   collections: Collections;
 };
 
-const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
+const CollectionProvider: React.FC<Props> = ({
+  collectionId,
+  collections,
+  defaultDuration,
+}) => {
   const [isPaused, setIsPaused] = React.useState(false);
-  const [progress] = React.useState(0);
   const [currentCollection, setCurrentCollection] = React.useState<
     CollectionPropType | undefined
   >();
   const [slideIndex, setSlideIndex] = React.useState(0);
+  const { progress, onStartTimer } = useAutoPlay(isPaused, defaultDuration);
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -26,11 +31,14 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
     setIsPaused(false);
   }, []);
 
+  const onCollectionEnd = React.useCallback(() => {}, []);
+
   const onNext = React.useCallback(() => {
     const nextIndex = slideIndex + 1;
     const maxIndex = currentCollection?.slides.length || 0;
     if (nextIndex < maxIndex) {
       setSlideIndex(nextIndex);
+      onStartTimer();
     }
   }, [currentCollection?.slides.length, slideIndex]);
 
@@ -41,8 +49,6 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
     }
   }, [slideIndex]);
 
-  const onCollectionEnd = React.useCallback(() => {}, []);
-
   const value = React.useMemo<CollectionContextProps>(() => {
     return {
       isPaused,
@@ -52,6 +58,7 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
       onPrev,
       progress,
       onCollectionEnd,
+      slideIndex,
     };
   }, [
     isPaused,
@@ -61,6 +68,7 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
     onPauseStart,
     onPrev,
     progress,
+    slideIndex,
   ]);
 
   React.useEffect(() => {
@@ -68,6 +76,8 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
     setCurrentCollection(current);
     setSlideIndex(current?.startIndex || 0);
   }, [collectionId, collections]);
+
+  console.log(progress, '@progress');
 
   return (
     <Context.Provider value={value}>

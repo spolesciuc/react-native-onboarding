@@ -11,7 +11,7 @@ type Props = SlidePropType & {
 };
 
 const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
-  const { onPrev, onNext, onPauseStart, onPauseEnd, progress } =
+  const { onPrev, onNext, onPauseStart, onPauseEnd, progress, slideIndex } =
     useCollection();
 
   const [loading, setLoading] = React.useState(false);
@@ -26,8 +26,6 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
 
   console.log(loading, '@loading');
 
-  console.log(ids, '@ids');
-
   return (
     <View style={styles.wrapper}>
       <Pressable
@@ -41,7 +39,7 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
           progress={progress}
           color={'red'}
           unfilledColor={'blue'}
-          index={0}
+          index={slideIndex}
           ids={ids}
         />
         <Image
