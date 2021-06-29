@@ -7,7 +7,7 @@ const Context = React.createContext<CollectionContextProps>({
   onPauseEnd: () => {},
   onNext: () => {},
   onPrev: () => {},
-  slideProgress: 0,
+  progress: 0,
   onCollectionEnd: () => {},
 });
 

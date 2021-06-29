@@ -7,7 +7,7 @@ import React from 'react';
 type Props = OnboardingProps & {};
 
 const OnboardingProvider: React.FC<Props> = ({
-  children,
+  collections,
   duration = 15000,
 }) => {
   const [collectionId, setSelectionId] = React.useState<string | undefined>(
@@ -33,14 +33,22 @@ const OnboardingProvider: React.FC<Props> = ({
       isVisible,
       onShow,
       onHide,
-      collectionId,
       onChangeCollectionId,
     };
-  }, [collectionId, isVisible, onChangeCollectionId, onHide, onShow]);
+  }, [isVisible, onChangeCollectionId, onHide, onShow]);
+
+  React.useEffect(() => {
+    const id = collections.length > 1 ? collections[0].id : undefined;
+    setSelectionId(id);
+  }, [collections]);
 
   return (
     <Context.Provider value={value}>
-      <CollectionProvider duration={duration}>{children}</CollectionProvider>
+      <CollectionProvider
+        duration={duration}
+        collectionId={collectionId}
+        collections={collections}
+      />
     </Context.Provider>
   );
 };

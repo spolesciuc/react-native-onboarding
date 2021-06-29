@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Collections, OnboardingProps } from './types';
-import { View } from 'react-native';
-import Collection from './components/collection';
 import OnboardingProvider from './providers/onboarding';
 
 type Props = OnboardingProps & {
@@ -9,15 +7,7 @@ type Props = OnboardingProps & {
 };
 
 const Onboarding: React.FC<Props> = ({ data, duration }) => {
-  return (
-    <OnboardingProvider duration={duration}>
-      <View>
-        {data.map((d) => (
-          <Collection key={`collection:${d.id}`} {...d} />
-        ))}
-      </View>
-    </OnboardingProvider>
-  );
+  return <OnboardingProvider duration={duration} collections={data} />;
 };
 
 export default Onboarding;

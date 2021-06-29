@@ -3,6 +3,6 @@ declare const useCollection: () => {
     onPauseEnd: () => void;
     onNext: () => void;
     onPrev: () => void;
-    slideProgress: number;
+    progress: number;
 };
 export default useCollection;

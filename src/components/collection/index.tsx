@@ -8,9 +8,14 @@ type Props = CollectionPropType & {
 };
 
 const Collection: React.FC<Props> = ({ slides = [] }) => {
+  const ids = React.useMemo(() => {
+    return slides.map((_, i) => i);
+  }, [slides]);
+
   return (
     <View>
       <Slide
+        ids={ids}
         source={slides[0].source}
         renderBottomBar={slides[0].renderBottomBar}
       />

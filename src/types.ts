@@ -16,4 +16,5 @@ export type Collections = Array<CollectionPropType>;
 
 export type OnboardingProps = {
   duration?: number;
+  collections: Collections;
 };

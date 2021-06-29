@@ -1,6 +1,10 @@
 declare const styles: {
     wrapper: {
-        flex: number;
+        position: "absolute";
+        zIndex: number;
+        backgroundColor: string;
+        height: number;
+        width: number;
     };
 };
 export default styles;

@@ -1,14 +1,21 @@
 import { CollectionContextProps } from './types';
+import { CollectionPropType, Collections } from '../../types';
+import Collection from '../../components/collection';
 import Context from './context';
 import React from 'react';
 
 type Props = {
   duration: number;
+  collectionId: string | undefined;
+  collections: Collections;
 };
 
-const CollectionProvider: React.FC<Props> = ({ children }) => {
+const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
   const [isPaused, setIsPaused] = React.useState(false);
-  const [slideProgress] = React.useState(0);
+  const [progress] = React.useState(0);
+  const [currentCollection, setCurrentCollection] = React.useState<
+    CollectionPropType | undefined
+  >();
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -28,8 +35,6 @@ const CollectionProvider: React.FC<Props> = ({ children }) => {
 
   const onCollectionEnd = React.useCallback(() => {}, []);
 
-  console.log(isPaused, '@isPaused');
-
   const value = React.useMemo<CollectionContextProps>(() => {
     return {
       isPaused,
@@ -37,7 +42,7 @@ const CollectionProvider: React.FC<Props> = ({ children }) => {
       onPauseEnd,
       onNext,
       onPrev,
-      slideProgress,
+      progress,
       onCollectionEnd,
     };
   }, [
@@ -47,10 +52,26 @@ const CollectionProvider: React.FC<Props> = ({ children }) => {
     onPauseEnd,
     onPauseStart,
     onPrev,
-    slideProgress,
+    progress,
   ]);
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  React.useEffect(() => {
+    const current = collections.find((x) => x.id === collectionId);
+    setCurrentCollection(current);
+  }, [collectionId, collections]);
+
+  console.log(isPaused, '@isPaused');
+
+  return (
+    <Context.Provider value={value}>
+      {currentCollection ? (
+        <Collection
+          key={`collection:${currentCollection.id}`}
+          {...currentCollection}
+        />
+      ) : null}
+    </Context.Provider>
+  );
 };
 
 export default CollectionProvider;

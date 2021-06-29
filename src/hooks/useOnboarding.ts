@@ -10,14 +10,12 @@ const useOnboarding = () => {
     );
   }
 
-  const { isVisible, onShow, onHide, collectionId, onChangeCollectionId } =
-    context;
+  const { isVisible, onShow, onHide, onChangeCollectionId } = context;
 
   return {
     isVisible,
     onShow,
     onHide,
-    collectionId,
     onChangeCollectionId,
   };
 };

@@ -1,6 +1,6 @@
 export type CollectionContextProps = {
   isPaused: boolean;
-  slideProgress: number;
+  progress: number;
   onPauseStart: () => void;
   onPauseEnd: () => void;
   onNext: () => void;

@@ -10,8 +10,8 @@ const useCollection = () => {
     );
   }
 
-  const { onPauseStart, onPauseEnd, onNext, onPrev, slideProgress } = context;
-  return { onPauseStart, onPauseEnd, onNext, onPrev, slideProgress };
+  const { onPauseStart, onPauseEnd, onNext, onPrev, progress } = context;
+  return { onPauseStart, onPauseEnd, onNext, onPrev, progress };
 };
 
 export default useCollection;
