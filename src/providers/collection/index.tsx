@@ -16,6 +16,7 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
   const [currentCollection, setCurrentCollection] = React.useState<
     CollectionPropType | undefined
   >();
+  const [slideIndex, setSlideIndex] = React.useState(0);
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -26,12 +27,19 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
   }, []);
 
   const onNext = React.useCallback(() => {
-    console.log('@onNext');
-  }, []);
+    const nextIndex = slideIndex + 1;
+    const maxIndex = currentCollection?.slides.length || 0;
+    if (nextIndex < maxIndex) {
+      setSlideIndex(nextIndex);
+    }
+  }, [currentCollection?.slides.length, slideIndex]);
 
   const onPrev = React.useCallback(() => {
-    console.log('@onPrev');
-  }, []);
+    const prevIndex = slideIndex - 1;
+    if (prevIndex >= 0) {
+      setSlideIndex(prevIndex);
+    }
+  }, [slideIndex]);
 
   const onCollectionEnd = React.useCallback(() => {}, []);
 
@@ -58,9 +66,8 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
   React.useEffect(() => {
     const current = collections.find((x) => x.id === collectionId);
     setCurrentCollection(current);
+    setSlideIndex(current?.startIndex || 0);
   }, [collectionId, collections]);
-
-  console.log(isPaused, '@isPaused');
 
   return (
     <Context.Provider value={value}>
@@ -68,6 +75,7 @@ const CollectionProvider: React.FC<Props> = ({ collectionId, collections }) => {
         <Collection
           key={`collection:${currentCollection.id}`}
           {...currentCollection}
+          index={slideIndex}
         />
       ) : null}
     </Context.Provider>

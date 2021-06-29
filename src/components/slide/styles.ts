@@ -13,12 +13,18 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   leftContainer: {
-    // backgroundColor: 'blue',
     left: 0,
   },
   rightContainer: {
-    // backgroundColor: 'red',
     right: 0,
+  },
+  safeArea: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  image: {
+    ...Proportions.slideSize,
+    position: 'absolute',
   },
 });
 

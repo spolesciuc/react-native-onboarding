@@ -36,7 +36,14 @@ const Progress: React.FC<Props> = ({ completed, progress }) => {
   }, [value]);
 
   return (
-    <View style={styles.wrapper}>
+    <View
+      style={[
+        styles.wrapper,
+        {
+          backgroundColor:
+            '#' + Math.floor(Math.random() * 16777215).toString(16),
+        },
+      ]}>
       <View style={styled} />
     </View>
   );

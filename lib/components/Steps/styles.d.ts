@@ -1,9 +1,9 @@
 declare const styles: {
     wrapper: {
-        position: "absolute";
         zIndex: number;
-        backgroundColor: string;
         height: number;
+        flexDirection: 'row';
+        paddingHorizontal: number;
         width: number;
     };
 };

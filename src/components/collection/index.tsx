@@ -5,9 +5,10 @@ import Slide from '../slide';
 
 type Props = CollectionPropType & {
   onAllStoriesEnd?: (collectionId: string) => void;
+  index: number;
 };
 
-const Collection: React.FC<Props> = ({ slides = [] }) => {
+const Collection: React.FC<Props> = ({ slides = [], index = 0 }) => {
   const ids = React.useMemo(() => {
     return slides.map((_, i) => i);
   }, [slides]);
@@ -16,8 +17,8 @@ const Collection: React.FC<Props> = ({ slides = [] }) => {
     <View>
       <Slide
         ids={ids}
-        source={slides[0].source}
-        renderBottomBar={slides[0].renderBottomBar}
+        source={slides[index].source}
+        renderBottomBar={slides[index].renderBottomBar}
       />
     </View>
   );

@@ -14,5 +14,4 @@ export declare type CollectionPropType = {
 export declare type Collections = Array<CollectionPropType>;
 export declare type OnboardingProps = {
     duration?: number;
-    collections: Collections;
 };

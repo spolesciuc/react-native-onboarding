@@ -1,19 +1,21 @@
+import { Collections, OnboardingProps } from '../../types';
 import { OnboardingContextProps } from './types';
-import { OnboardingProps } from '../../types';
 import CollectionProvider from '../collection';
 import Context from './context';
 import React from 'react';
 
-type Props = OnboardingProps & {};
+type Props = OnboardingProps & {
+  collections: Collections;
+};
 
 const OnboardingProvider: React.FC<Props> = ({
   collections,
   duration = 15000,
 }) => {
+  const [isVisible, setIsVisible] = React.useState(false);
   const [collectionId, setSelectionId] = React.useState<string | undefined>(
     undefined,
   );
-  const [isVisible, setIsVisible] = React.useState(false);
 
   const onChangeCollectionId = React.useCallback((nextCollectionId: string) => {
     setSelectionId(nextCollectionId);
@@ -38,7 +40,7 @@ const OnboardingProvider: React.FC<Props> = ({
   }, [isVisible, onChangeCollectionId, onHide, onShow]);
 
   React.useEffect(() => {
-    const id = collections.length > 1 ? collections[0].id : undefined;
+    const id = collections.length > 0 ? collections[0].id : undefined;
     setSelectionId(id);
   }, [collections]);
 

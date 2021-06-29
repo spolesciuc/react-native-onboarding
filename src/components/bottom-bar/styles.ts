@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     zIndex: 2,
     elevation: 2,
-    position: 'absolute',
+    // position: 'absolute',
     bottom: 0,
     width: Proportions.slideSize.width,
   },

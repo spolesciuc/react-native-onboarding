@@ -3,10 +3,10 @@ import Proportions from '../../utils/proportions';
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'absolute',
-    zIndex: 2,
-    backgroundColor: 'red',
-    height: 15,
+    zIndex: 1,
+    height: 3,
+    flexDirection: 'row',
+    paddingHorizontal: 26,
     width: Proportions.slideSize.width,
   },
 });
