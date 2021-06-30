@@ -6,9 +6,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     flexDirection: 'row',
     backgroundColor: '#FFF',
+    height: 2,
   },
   progress: {
-    backgroundColor: 'blue',
+    backgroundColor: 'red',
   },
 });
 

@@ -3,17 +3,16 @@ import React from 'react';
 import styles from './styles';
 
 export type ProgressProps = {
-  progress: Animated.AnimatedValue;
+  progress: Animated.AnimatedValue | null;
   color: string;
   unfilledColor: string;
 };
 
 type Props = ProgressProps & {
   completed: boolean;
-  active: boolean;
 };
 
-const Progress: React.FC<Props> = ({ completed, progress, active }) => {
+const Progress: React.FC<Props> = ({ completed, progress }) => {
   const styled = React.useMemo(() => {
     let stateStyle: Animated.AnimatedProps<StyleProp<ViewStyle>> = {
       flex: 0,
@@ -22,14 +21,14 @@ const Progress: React.FC<Props> = ({ completed, progress, active }) => {
       stateStyle = {
         flex: 1,
       };
-    } else if (active) {
+    } else if (progress) {
       stateStyle = {
         flex: progress,
       };
     }
 
     return StyleSheet.flatten([styles.progress, stateStyle]);
-  }, [active, completed, progress]);
+  }, [completed, progress]);
 
   return (
     <View style={[styles.wrapper]}>

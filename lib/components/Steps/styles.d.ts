@@ -1,10 +1,10 @@
 declare const styles: {
     wrapper: {
         zIndex: number;
-        height: number;
+        elevation: number;
         flexDirection: "row";
         paddingHorizontal: number;
-        width: number;
+        paddingTop: number;
     };
 };
 export default styles;

@@ -4,6 +4,7 @@ declare const styles: {
         marginHorizontal: number;
         flexDirection: "row";
         backgroundColor: string;
+        height: number;
     };
     progress: {
         backgroundColor: string;

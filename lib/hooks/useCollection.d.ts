@@ -3,6 +3,7 @@ declare const useCollection: () => {
     onPauseEnd: () => void;
     onNext: () => void;
     onPrev: () => void;
-    progress: number;
+    progress: import("react-native").Animated.Value;
+    slideIndex: number;
 };
 export default useCollection;

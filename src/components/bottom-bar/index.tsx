@@ -7,7 +7,11 @@ type Props = {
 };
 
 const BottomBar: React.FC<Props> = ({ render }) => {
-  return <View style={styles.wrapper}>{render()}</View>;
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.innerWrapper}>{render()}</View>
+    </View>
+  );
 };
 
 export default BottomBar;

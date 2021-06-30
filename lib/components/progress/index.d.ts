@@ -1,6 +1,8 @@
+import {Animated} from 'react-native';
 import React from 'react';
+
 export declare type ProgressProps = {
-    progress: number;
+    progress: Animated.AnimatedValue | null;
     color: string;
     unfilledColor: string;
 };

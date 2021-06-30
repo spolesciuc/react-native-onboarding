@@ -21,8 +21,6 @@ const CollectionProvider: React.FC<Props> = ({
     CollectionPropType | undefined
   >();
   const [slideIndex, setSlideIndex] = React.useState(0);
-  const { progress, onStartTimer } = useProgress(isPaused, defaultDuration);
-  // const { progress, onStart } = useAutoPlay(isPaused, defaultDuration);
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -39,21 +37,25 @@ const CollectionProvider: React.FC<Props> = ({
     const maxIndex = currentCollection?.slides.length || 0;
     if (nextIndex < maxIndex) {
       setSlideIndex(nextIndex);
-      onStartTimer();
     }
-  }, [currentCollection?.slides.length, onStartTimer, slideIndex]);
+  }, [currentCollection?.slides.length, slideIndex]);
 
   const onPrev = React.useCallback(() => {
     const prevIndex = slideIndex - 1;
     if (prevIndex >= 0) {
       setSlideIndex(prevIndex);
-      onStartTimer();
     }
-  }, [onStartTimer, slideIndex]);
+  }, [slideIndex]);
 
-  // React.useEffect(() => {
-  //   onStart();
-  // }, [onStart]);
+  const handleProgressEnd = React.useCallback(() => {
+    onNext();
+  }, [onNext]);
+
+  const { progress } = useProgress(
+    isPaused,
+    defaultDuration,
+    handleProgressEnd,
+  );
 
   const value = React.useMemo<CollectionContextProps>(() => {
     return {

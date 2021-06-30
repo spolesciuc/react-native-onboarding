@@ -1,10 +1,10 @@
 declare const styles: {
     wrapper: {
+        top?: number | undefined;
         backgroundColor: string;
-        zIndex: number;
-        elevation: number;
-        bottom: number;
-        width: number;
+    };
+    innerWrapper: {
+        backgroundColor: string;
     };
 };
 export default styles;

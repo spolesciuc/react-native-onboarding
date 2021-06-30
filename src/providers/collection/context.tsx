@@ -1,3 +1,4 @@
+import { Animated } from 'react-native';
 import { CollectionContextProps } from './types';
 import React from 'react';
 
@@ -7,7 +8,7 @@ const Context = React.createContext<CollectionContextProps>({
   onPauseEnd: () => {},
   onNext: () => {},
   onPrev: () => {},
-  progress: 0,
+  progress: new Animated.Value(0),
   onCollectionEnd: () => {},
   slideIndex: 0,
 });

@@ -6,7 +6,7 @@ declare const styles: {
     sideContainer: {
         width: number;
         height: number;
-        position: 'absolute';
+        position: "absolute";
         zIndex: number;
         elevation: number;
     };
@@ -18,10 +18,10 @@ declare const styles: {
     };
     safeArea: {
         flex: number;
-        justifyContent: 'space-between';
+        justifyContent: "space-between";
     };
     image: {
-        position: 'absolute';
+        position: "absolute";
         height: number;
         width: number;
     };

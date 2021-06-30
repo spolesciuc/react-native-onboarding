@@ -28,11 +28,11 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
 
   return (
     <View style={styles.wrapper}>
-      <Pressable
-        style={[styles.sideContainer, styles.leftContainer]}
-        onPress={onPrev}
-        onLongPress={onPauseStart}
-        onPressOut={onPauseEnd}
+      <Image
+        source={source}
+        onLoadStart={handleLoadStart}
+        onLoadEnd={handleLoadEnd}
+        style={styles.image}
       />
       <SafeAreaView style={styles.safeArea}>
         <Steps
@@ -42,20 +42,22 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
           index={slideIndex}
           ids={ids}
         />
-        <Image
-          source={source}
-          onLoadStart={handleLoadStart}
-          onLoadEnd={handleLoadEnd}
-          style={styles.image}
-        />
         {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
       </SafeAreaView>
 
+      <Pressable
+        style={[styles.sideContainer, styles.leftContainer]}
+        onPress={onPrev}
+        onLongPress={onPauseStart}
+        onPressOut={onPauseEnd}
+        delayLongPress={300}
+      />
       <Pressable
         style={[styles.sideContainer, styles.rightContainer]}
         onPress={onNext}
         onLongPress={onPauseStart}
         onPressOut={onPauseEnd}
+        delayLongPress={300}
       />
     </View>
   );

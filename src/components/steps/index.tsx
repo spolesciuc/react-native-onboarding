@@ -15,19 +15,15 @@ const Steps: React.FC<Props> = ({
   color,
   unfilledColor,
 }) => {
-  console.log({ index, progress }, '@index');
-
   return (
     <View style={styles.wrapper}>
       {ids.map((i) => (
         <Progress
-          key={i}
+          key={`${i}${i === index && ':active'}`}
           completed={i < index}
-          progress={progress}
+          progress={i === index ? progress : null}
           color={color}
           unfilledColor={unfilledColor}
-          active={true}
-          // active={i === index}
         />
       ))}
     </View>
