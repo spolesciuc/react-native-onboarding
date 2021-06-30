@@ -3,7 +3,7 @@ import { CollectionPropType, Collections } from '../../types';
 import Collection from '../../components/collection';
 import Context from './context';
 import React from 'react';
-import useAutoPlay from '../../hooks/useAutoPlay';
+import useProgress from '../../hooks/useProgress';
 
 type Props = {
   defaultDuration: number;
@@ -21,8 +21,8 @@ const CollectionProvider: React.FC<Props> = ({
     CollectionPropType | undefined
   >();
   const [slideIndex, setSlideIndex] = React.useState(0);
-  // const { progress, onStartTimer } = useProgress(isPaused, defaultDuration);
-  const { progress, onStart } = useAutoPlay(isPaused, defaultDuration);
+  const { progress, onStartTimer } = useProgress(isPaused, defaultDuration);
+  // const { progress, onStart } = useAutoPlay(isPaused, defaultDuration);
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -39,17 +39,17 @@ const CollectionProvider: React.FC<Props> = ({
     const maxIndex = currentCollection?.slides.length || 0;
     if (nextIndex < maxIndex) {
       setSlideIndex(nextIndex);
-      onStart();
+      onStartTimer();
     }
-  }, [currentCollection?.slides.length, onStart, slideIndex]);
+  }, [currentCollection?.slides.length, onStartTimer, slideIndex]);
 
   const onPrev = React.useCallback(() => {
     const prevIndex = slideIndex - 1;
     if (prevIndex >= 0) {
       setSlideIndex(prevIndex);
-      onStart();
+      onStartTimer();
     }
-  }, [onStart, slideIndex]);
+  }, [onStartTimer, slideIndex]);
 
   // React.useEffect(() => {
   //   onStart();

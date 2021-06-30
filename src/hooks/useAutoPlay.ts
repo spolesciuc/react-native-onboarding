@@ -22,12 +22,12 @@ const useAutoPlay = (isPaused: boolean, defaultDuration: number = 15000) => {
         return;
       }
       const nextTick = tick + 1000;
+      console.log({ nextTick, defaultDuration });
       const value = +(nextTick / defaultDuration).toFixed(2);
-      console.log({ tick, value }, '@value');
       if (nextTick >= defaultDuration) {
         clearInterval(i);
+        setProgress(1);
       } else {
-        console.log(nextTick, '@nextTick');
         tick = nextTick;
         setProgress(value);
       }
