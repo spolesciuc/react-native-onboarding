@@ -1,8 +1,6 @@
-import { Animated } from 'react-native';
-
 export type CollectionContextProps = {
   isPaused: boolean;
-  progress: Animated.AnimatedValue;
+  progress: number;
   slideIndex: number;
   onPauseStart: () => void;
   onPauseEnd: () => void;

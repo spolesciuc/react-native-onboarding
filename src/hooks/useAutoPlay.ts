@@ -1,36 +1,44 @@
-import { Animated, Easing } from 'react-native';
 import React from 'react';
 
 const useAutoPlay = (isPaused: boolean, defaultDuration: number = 15000) => {
-  const progress = React.useRef(new Animated.Value(0)).current;
-  const animation = React.useRef(
-    Animated.timing(progress, {
-      toValue: 1,
-      duration: defaultDuration,
-      useNativeDriver: false,
-      easing: Easing.ease,
-      isInteraction: false,
-    }),
-  ).current;
+  const [progress, setProgress] = React.useState(0);
+  const [isRun, setIsRun] = React.useState(false);
 
-  const onStartTimer = React.useCallback(() => {
-    progress.setValue(0);
-    animation.stop();
-    animation.start();
-  }, [animation, progress]);
+  const onStart = React.useCallback(() => {
+    setProgress(0);
+    setIsRun(true);
+  }, []);
+
+  const onFinish = React.useCallback(() => {
+    setIsRun(false);
+  }, []);
 
   React.useEffect(() => {
-    if (isPaused) {
-      animation.stop();
-    } else {
-      animation.start();
-    }
-    return () => {
-      progress.stopAnimation();
-    };
-  }, [progress, isPaused, animation]);
+    let i;
 
-  return { progress, onStartTimer };
+    let tick = 0;
+    i = setInterval(() => {
+      if (isPaused) {
+        return;
+      }
+      const nextTick = tick + 1000;
+      const value = +(nextTick / defaultDuration).toFixed(2);
+      console.log({ tick, value }, '@value');
+      if (nextTick >= defaultDuration) {
+        clearInterval(i);
+      } else {
+        console.log(nextTick, '@nextTick');
+        tick = nextTick;
+        setProgress(value);
+      }
+    }, 1000);
+    return () => {
+      onFinish();
+      clearInterval(i);
+    };
+  }, [defaultDuration, isPaused, isRun, onFinish]);
+
+  return { progress, onStart };
 };
 
 export default useAutoPlay;

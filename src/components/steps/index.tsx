@@ -27,6 +27,7 @@ const Steps: React.FC<Props> = ({
           color={color}
           unfilledColor={unfilledColor}
           active={true}
+          width={300}
           // active={i === index}
         />
       ))}

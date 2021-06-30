@@ -24,7 +24,7 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
     setLoading(false);
   }, []);
 
-  console.log(loading, '@loading');
+  console.log({ loading, progress }, '@loading');
 
   return (
     <View style={styles.wrapper}>
@@ -33,6 +33,7 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
         onPress={onPrev}
         onLongPress={onPauseStart}
         onPressOut={onPauseEnd}
+        delayLongPress={300}
       />
       <SafeAreaView style={styles.safeArea}>
         <Steps
