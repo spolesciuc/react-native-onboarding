@@ -3,8 +3,8 @@ import { Collections, OnboardingProps } from './types';
 import OnboardingProvider from './providers/onboarding';
 
 type OnboardingHandle = {
-  onSkip: () => void;
-  onNext: () => void;
+  onHide: () => void;
+  onShow: (collectionId: string) => void;
 };
 
 type Props = OnboardingProps & {
@@ -37,10 +37,12 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
   );
 
   React.useImperativeHandle(forwardedRef, () => ({
-    onSkip() {
+    onHide() {
       onHide();
     },
-    onNext() {},
+    onShow(id: string) {
+      onShow(id);
+    },
   }));
 
   return (
