@@ -1,6 +1,10 @@
-import { Collections, OnboardingProps } from '../../types';
+import {
+  CollectionPropType,
+  Collections,
+  OnboardingProps,
+} from '../../components/onboarding/types';
 import { OnboardingContextProps } from './types';
-import CollectionProvider from '../collection';
+import Collection from '../../components/collection';
 import Context from './context';
 import React from 'react';
 
@@ -9,40 +13,51 @@ type Props = OnboardingProps & {
   isVisible: boolean;
   onShow: (nextCollectionId: string) => void;
   onHide: () => void;
-  collectionId: string | undefined;
-  onChangeCollectionId: (nextCollectionId: string | undefined) => void;
+  slideIndex: number;
+  onNext: () => void;
+  onPrev: () => void;
+  onCollectionEnd: () => void;
+  currentCollection: CollectionPropType | undefined;
 };
 
 const OnboardingProvider: React.FC<Props> = ({
   duration = 15000,
-  collections,
   isVisible,
   onShow,
   onHide,
-  collectionId,
-  onChangeCollectionId,
+  onNext,
+  onPrev,
+  onCollectionEnd,
+  slideIndex,
+  currentCollection,
 }) => {
   const value = React.useMemo<OnboardingContextProps>(() => {
     return {
+      duration,
       isVisible,
       onShow,
       onHide,
-      onChangeCollectionId,
+      onNext,
+      onPrev,
+      onCollectionEnd,
+      slideIndex,
     };
-  }, [isVisible, onChangeCollectionId, onHide, onShow]);
-
-  React.useEffect(() => {
-    const id = collections.length > 0 ? collections[0].id : undefined;
-    onChangeCollectionId(id);
-  }, [collections, onChangeCollectionId]);
+  }, [
+    duration,
+    isVisible,
+    onCollectionEnd,
+    onHide,
+    onNext,
+    onPrev,
+    onShow,
+    slideIndex,
+  ]);
 
   return (
     <Context.Provider value={value}>
-      <CollectionProvider
-        defaultDuration={duration}
-        collectionId={collectionId}
-        collections={collections}
-      />
+      {currentCollection ? (
+        <Collection {...currentCollection} index={slideIndex} />
+      ) : null}
     </Context.Provider>
   );
 };

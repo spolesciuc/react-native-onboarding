@@ -17,3 +17,10 @@ export type Collections = Array<CollectionPropType>;
 export type OnboardingProps = {
   duration?: number;
 };
+
+export type OnboardingHandle = {
+  onHide: () => void;
+  onShow: (collectionId: string) => void;
+  onNext: () => void;
+  onPrev: () => void;
+};

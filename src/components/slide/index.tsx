@@ -1,5 +1,6 @@
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Image, Pressable, SafeAreaView, View } from 'react-native';
-import { SlidePropType } from '../../types';
+import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
 import React from 'react';
 import Steps from '../steps';
@@ -16,6 +17,8 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
   const { onPrev, onNext, slideIndex, duration } = useCollection();
   const [ready, setReady] = React.useState(false);
   const [start, setStart] = React.useState(new Date());
+
+  console.log(ifIphoneX, '@ifIphoneX');
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);

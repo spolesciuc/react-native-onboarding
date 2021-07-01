@@ -1,4 +1,4 @@
-import Context from '../providers/collection/context';
+import Context from '../providers/onboarding/context';
 import React from 'react';
 
 const useCollection = () => {

@@ -1,29 +1,55 @@
 import React from 'react';
-import Onboarding from '@stanislavpoleshuk/react-native-onboarding';
-import { Text } from 'react-native';
+import BottomBar from './src/components/bottom-bar';
+import Onboarding, {
+  OnboardingRefProps,
+} from '@stanislavpoleshuk/react-native-onboarding';
 
 const App = () => {
+  const ref = React.useRef<OnboardingRefProps>(null);
+
+  const handlePressPrev = React.useCallback(() => {
+    console.log('@handlePressPrev');
+    if (ref?.current) {
+      ref.current.onPrev();
+    }
+  }, []);
+
+  const handlePressNext = React.useCallback(() => {
+    console.log('@handlePressNext');
+    if (ref?.current) {
+      ref.current.onNext();
+    }
+  }, []);
+
+  const renderBottomBar = React.useCallback(
+    () => (
+      <BottomBar onPressPrev={handlePressPrev} onPressNext={handlePressNext} />
+    ),
+    [handlePressNext, handlePressPrev],
+  );
+
   return (
     <Onboarding
+      ref={ref}
       data={[
         {
           id: '1',
           slides: [
             {
               source: require('./assets/Onbording_1.webp'),
-              renderBottomBar: () => <Text>123</Text>,
+              renderBottomBar: renderBottomBar,
             },
             {
               source: require('./assets/Onbording_2.webp'),
-              renderBottomBar: () => <Text>123</Text>,
+              renderBottomBar: renderBottomBar,
             },
             {
               source: require('./assets/Onbording_3.webp'),
-              renderBottomBar: () => <Text>123</Text>,
+              renderBottomBar: renderBottomBar,
             },
             {
               source: require('./assets/Onbording_4.webp'),
-              renderBottomBar: () => <Text>123</Text>,
+              renderBottomBar: renderBottomBar,
             },
           ],
         },

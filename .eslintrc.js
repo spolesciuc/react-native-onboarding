@@ -3,6 +3,7 @@ module.exports = {
   extends: ['@react-native-community'],
   parser: '@typescript-eslint/parser',
   plugins: ['prettier', 'react-hooks', 'sort-imports-es6-autofix'],
+  ignorePatterns: ['lib/*'],
   rules: {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],

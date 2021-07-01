@@ -1,4 +1,4 @@
-import {SlidePropType} from '../../types';
+import {SlidePropType} from '../onboarding/types';
 import React from 'react';
 
 declare type Props = SlidePropType & {
