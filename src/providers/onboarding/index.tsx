@@ -6,30 +6,22 @@ import React from 'react';
 
 type Props = OnboardingProps & {
   collections: Collections;
+  isVisible: boolean;
+  onShow: (nextCollectionId: string) => void;
+  onHide: () => void;
+  collectionId: string | undefined;
+  onChangeCollectionId: (nextCollectionId: string | undefined) => void;
 };
 
 const OnboardingProvider: React.FC<Props> = ({
-  collections,
   duration = 15000,
+  collections,
+  isVisible,
+  onShow,
+  onHide,
+  collectionId,
+  onChangeCollectionId,
 }) => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [collectionId, setSelectionId] = React.useState<string | undefined>(
-    undefined,
-  );
-
-  const onChangeCollectionId = React.useCallback((nextCollectionId: string) => {
-    setSelectionId(nextCollectionId);
-  }, []);
-
-  const onShow = React.useCallback((nextCollectionId: string) => {
-    setIsVisible(true);
-    setSelectionId(nextCollectionId);
-  }, []);
-
-  const onHide = React.useCallback(() => {
-    setIsVisible(false);
-  }, []);
-
   const value = React.useMemo<OnboardingContextProps>(() => {
     return {
       isVisible,
@@ -41,8 +33,8 @@ const OnboardingProvider: React.FC<Props> = ({
 
   React.useEffect(() => {
     const id = collections.length > 0 ? collections[0].id : undefined;
-    setSelectionId(id);
-  }, [collections]);
+    onChangeCollectionId(id);
+  }, [collections, onChangeCollectionId]);
 
   return (
     <Context.Provider value={value}>

@@ -2,6 +2,7 @@ import { CollectionPropType } from '../../types';
 import { View } from 'react-native';
 import React from 'react';
 import Slide from '../slide';
+import styles from './styles';
 
 type Props = CollectionPropType & {
   onAllStoriesEnd?: (collectionId: string) => void;
@@ -14,9 +15,10 @@ const Collection: React.FC<Props> = ({ slides = [], index = 0 }) => {
   }, [slides]);
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <Slide
-        ids={ids}
+        key={index}
+        stepIds={ids}
         source={slides[index].source}
         renderBottomBar={slides[index].renderBottomBar}
       />

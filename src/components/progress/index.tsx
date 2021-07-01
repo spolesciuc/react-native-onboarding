@@ -3,13 +3,13 @@ import React from 'react';
 import styles from './styles';
 
 export type ProgressProps = {
-  progress: Animated.AnimatedValue | null;
   color: string;
   unfilledColor: string;
 };
 
 type Props = ProgressProps & {
   completed: boolean;
+  progress: Animated.AnimatedValue | null;
 };
 
 const Progress: React.FC<Props> = ({ completed, progress }) => {

@@ -2,19 +2,29 @@ import { View } from 'react-native';
 import Progress, { ProgressProps } from '../progress';
 import React from 'react';
 import styles from './styles';
+import useProgress from '../../hooks/useProgress';
 
 type Props = ProgressProps & {
   ids: Array<number>;
   index: number;
+  isPaused: boolean;
+  duration: number;
+  ready: boolean;
+  onEndAnimate: () => void;
 };
 
 const Steps: React.FC<Props> = ({
   ids,
   index,
-  progress,
   color,
   unfilledColor,
+  isPaused,
+  duration,
+  ready,
+  onEndAnimate,
 }) => {
+  const { progress } = useProgress(isPaused, duration, ready, onEndAnimate);
+
   return (
     <View style={styles.wrapper}>
       {ids.map((i) => (

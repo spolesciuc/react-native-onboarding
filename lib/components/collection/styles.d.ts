@@ -1,4 +1,6 @@
 declare const styles: {
-    wrapper: {};
+    wrapper: {
+        backgroundColor: string;
+    };
 };
 export default styles;

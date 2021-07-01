@@ -7,14 +7,27 @@ import styles from './styles';
 import useCollection from '../../hooks/useCollection';
 
 type Props = SlidePropType & {
-  ids: Array<number>;
+  stepIds: Array<number>;
 };
 
-const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
-  const { onPrev, onNext, onPauseStart, onPauseEnd, progress, slideIndex } =
-    useCollection();
+const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [, setLoading] = React.useState(false);
+  const { onPrev, onNext, slideIndex, duration } = useCollection();
+  const [ready, setReady] = React.useState(false);
+  const [start, setStart] = React.useState(new Date());
 
-  const [loading, setLoading] = React.useState(false);
+  const onPauseStart = React.useCallback(() => {
+    setIsPaused(true);
+  }, []);
+
+  const onPauseEnd = React.useCallback(() => {
+    setIsPaused(false);
+  }, []);
+
+  const handleProgressEnd = React.useCallback(() => {
+    onNext();
+  }, [onNext]);
 
   const handleLoadStart = React.useCallback(() => {
     setLoading(true);
@@ -22,9 +35,21 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
 
   const handleLoadEnd = React.useCallback(() => {
     setLoading(false);
+    setReady(true);
   }, []);
 
-  console.log(loading, '@loading');
+  const handlePrev = React.useCallback(() => {
+    const timeDiff = new Date().getTime() - start.getTime();
+    if (timeDiff > duration / 5) {
+      setStart(new Date());
+    } else {
+      onPrev();
+    }
+  }, [duration, onPrev, start]);
+
+  const handleNext = React.useCallback(() => {
+    onNext();
+  }, [onNext]);
 
   return (
     <View style={styles.wrapper}>
@@ -36,25 +61,29 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, ids }) => {
       />
       <SafeAreaView style={styles.safeArea}>
         <Steps
-          progress={progress}
+          key={start.toISOString()}
+          index={slideIndex}
           color={'red'}
           unfilledColor={'blue'}
-          index={slideIndex}
-          ids={ids}
+          ids={stepIds}
+          isPaused={isPaused}
+          ready={ready}
+          duration={duration}
+          onEndAnimate={handleProgressEnd}
         />
         {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
       </SafeAreaView>
 
       <Pressable
         style={[styles.sideContainer, styles.leftContainer]}
-        onPress={onPrev}
+        onPress={handlePrev}
         onLongPress={onPauseStart}
         onPressOut={onPauseEnd}
         delayLongPress={300}
       />
       <Pressable
         style={[styles.sideContainer, styles.rightContainer]}
-        onPress={onNext}
+        onPress={handleNext}
         onLongPress={onPauseStart}
         onPressOut={onPauseEnd}
         delayLongPress={300}
