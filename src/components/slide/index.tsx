@@ -1,5 +1,4 @@
-import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { Image, Pressable, SafeAreaView, View } from 'react-native';
+import { Image, Pressable, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
 import React from 'react';
@@ -17,8 +16,6 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
   const { onPrev, onNext, slideIndex, duration } = useCollection();
   const [ready, setReady] = React.useState(false);
   const [start, setStart] = React.useState(new Date());
-
-  console.log(ifIphoneX, '@ifIphoneX');
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -62,21 +59,19 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
         onLoadEnd={handleLoadEnd}
         style={styles.image}
       />
-      <SafeAreaView style={styles.safeArea}>
-        <Steps
-          key={start.toISOString()}
-          index={slideIndex}
-          color={'red'}
-          unfilledColor={'blue'}
-          ids={stepIds}
-          isPaused={isPaused}
-          ready={ready}
-          duration={duration}
-          onEndAnimate={handleProgressEnd}
-        />
-        {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
-      </SafeAreaView>
 
+      <Steps
+        key={start.toISOString()}
+        index={slideIndex}
+        color={'red'}
+        unfilledColor={'blue'}
+        ids={stepIds}
+        isPaused={isPaused}
+        ready={ready}
+        duration={duration}
+        onEndAnimate={handleProgressEnd}
+      />
+      {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
       <Pressable
         style={[styles.sideContainer, styles.leftContainer]}
         onPress={handlePrev}

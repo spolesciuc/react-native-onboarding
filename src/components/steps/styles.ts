@@ -1,3 +1,4 @@
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -7,6 +8,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 26,
     paddingTop: 10,
+    position: 'absolute',
+    top: getStatusBarHeight() + 10,
   },
 });
 
