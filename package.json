@@ -32,13 +32,11 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-native": "^0.64.2",
-    "react-native-gesture-handler": "1.9.0"
+    "react-native": "^0.64.2"
   },
   "peerDependencies": {
     "react": ">=16.13.1",
-    "react-native": ">=0.59.0",
-    "react-native-gesture-handler": "> 1.0.0"
+    "react-native": ">=0.59.0"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^3.0.0",
