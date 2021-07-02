@@ -4,9 +4,7 @@ declare const styles: {
         elevation: number;
         flexDirection: "row";
         paddingHorizontal: number;
-        paddingTop: number;
-        position: "absolute";
-        top: number;
+        marginTop: number;
     };
 };
 export default styles;

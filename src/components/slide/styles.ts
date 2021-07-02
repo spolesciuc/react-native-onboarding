@@ -8,23 +8,18 @@ const styles = StyleSheet.create({
   sideContainer: {
     width: Proportions.slideSize.width / 2,
     height: Proportions.slideSize.height,
-    position: 'absolute',
     zIndex: 1,
     elevation: 1,
   },
-  leftContainer: {
-    left: 0,
-  },
-  rightContainer: {
-    right: 0,
-  },
-  safeArea: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
+  leftContainer: {},
+  rightContainer: {},
   image: {
     ...Proportions.slideSize,
     position: 'absolute',
+  },
+  content: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });
 

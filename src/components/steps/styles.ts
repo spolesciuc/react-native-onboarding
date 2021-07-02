@@ -7,9 +7,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     flexDirection: 'row',
     paddingHorizontal: 26,
-    paddingTop: 10,
-    position: 'absolute',
-    top: getStatusBarHeight() + 10,
+    marginTop: getStatusBarHeight() + 20,
   },
 });
 

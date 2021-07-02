@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
       },
     }),
     marginBottom: getBottomSpace(),
-    position: 'absolute',
-    bottom: 0,
     width: Proportions.slideSize.width,
   },
   innerWrapper: { backgroundColor: 'green' },

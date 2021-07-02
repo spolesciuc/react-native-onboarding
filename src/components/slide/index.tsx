@@ -59,7 +59,6 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
         onLoadEnd={handleLoadEnd}
         style={styles.image}
       />
-
       <Steps
         key={start.toISOString()}
         index={slideIndex}
@@ -71,21 +70,23 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
         duration={duration}
         onEndAnimate={handleProgressEnd}
       />
+      <View style={styles.content}>
+        <Pressable
+          style={[styles.sideContainer, styles.leftContainer]}
+          onPress={handlePrev}
+          onLongPress={onPauseStart}
+          onPressOut={onPauseEnd}
+          delayLongPress={300}
+        />
+        <Pressable
+          style={[styles.sideContainer, styles.rightContainer]}
+          onPress={handleNext}
+          onLongPress={onPauseStart}
+          onPressOut={onPauseEnd}
+          delayLongPress={300}
+        />
+      </View>
       {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
-      <Pressable
-        style={[styles.sideContainer, styles.leftContainer]}
-        onPress={handlePrev}
-        onLongPress={onPauseStart}
-        onPressOut={onPauseEnd}
-        delayLongPress={300}
-      />
-      <Pressable
-        style={[styles.sideContainer, styles.rightContainer]}
-        onPress={handleNext}
-        onLongPress={onPauseStart}
-        onPressOut={onPauseEnd}
-        delayLongPress={300}
-      />
     </View>
   );
 };
