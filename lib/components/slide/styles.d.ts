@@ -16,6 +16,9 @@ declare const styles: {
         height: number;
         width: number;
     };
+    safeArea: {
+        flex: number;
+    };
     content: {
         flex: number;
         flexDirection: "row";

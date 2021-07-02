@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     ...Proportions.slideSize,
     position: 'absolute',
   },
+  safeArea: {
+    flex: 1,
+  },
   content: {
     flex: 1,
     flexDirection: 'row',

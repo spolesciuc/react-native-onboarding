@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   CollectionPropType,
   Collections,
@@ -6,7 +7,6 @@ import {
 import { OnboardingContextProps } from './types';
 import Collection from '../../components/collection';
 import Context from './context';
-import React from 'react';
 
 type Props = OnboardingProps & {
   collections: Collections;

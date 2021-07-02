@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { Animated, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import React from 'react';
 import styles from './styles';
 
 export type ProgressProps = {

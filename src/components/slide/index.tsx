@@ -1,7 +1,7 @@
-import { Image, Pressable, View } from 'react-native';
+import * as React from 'react';
+import { Image, Pressable, SafeAreaView, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
-import React from 'react';
 import Steps from '../steps';
 import styles from './styles';
 import useCollection from '../../hooks/useCollection';
@@ -59,34 +59,36 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
         onLoadEnd={handleLoadEnd}
         style={styles.image}
       />
-      <Steps
-        key={start.toISOString()}
-        index={slideIndex}
-        color={'red'}
-        unfilledColor={'blue'}
-        ids={stepIds}
-        isPaused={isPaused}
-        ready={ready}
-        duration={duration}
-        onEndAnimate={handleProgressEnd}
-      />
-      <View style={styles.content}>
-        <Pressable
-          style={[styles.sideContainer, styles.leftContainer]}
-          onPress={handlePrev}
-          onLongPress={onPauseStart}
-          onPressOut={onPauseEnd}
-          delayLongPress={300}
+      <SafeAreaView style={styles.safeArea}>
+        <Steps
+          key={start.toISOString()}
+          index={slideIndex}
+          color={'red'}
+          unfilledColor={'blue'}
+          ids={stepIds}
+          isPaused={isPaused}
+          ready={ready}
+          duration={duration}
+          onEndAnimate={handleProgressEnd}
         />
-        <Pressable
-          style={[styles.sideContainer, styles.rightContainer]}
-          onPress={handleNext}
-          onLongPress={onPauseStart}
-          onPressOut={onPauseEnd}
-          delayLongPress={300}
-        />
-      </View>
-      {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
+        <View style={styles.content}>
+          <Pressable
+            style={[styles.sideContainer, styles.leftContainer]}
+            onPress={handlePrev}
+            onLongPress={onPauseStart}
+            onPressOut={onPauseEnd}
+            delayLongPress={300}
+          />
+          <Pressable
+            style={[styles.sideContainer, styles.rightContainer]}
+            onPress={handleNext}
+            onLongPress={onPauseStart}
+            onPressOut={onPauseEnd}
+            delayLongPress={300}
+          />
+        </View>
+        {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
+      </SafeAreaView>
     </View>
   );
 };

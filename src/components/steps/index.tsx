@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { View } from 'react-native';
 import Progress, { ProgressProps } from '../progress';
-import React from 'react';
 import styles from './styles';
 import useProgress from '../../hooks/useProgress';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import BottomBar from './src/components/bottom-bar';
 import Onboarding, {
   OnboardingRefProps,

@@ -1,5 +1,5 @@
+import * as React from 'react';
 import {SlidePropType} from '../onboarding/types';
-import React from 'react';
 
 declare type Props = SlidePropType & {
     stepIds: Array<number>;

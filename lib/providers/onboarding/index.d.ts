@@ -1,5 +1,5 @@
+import * as React from 'react';
 import {CollectionPropType, Collections, OnboardingProps} from '../../components/onboarding/types';
-import React from 'react';
 
 declare type Props = OnboardingProps & {
     collections: Collections;

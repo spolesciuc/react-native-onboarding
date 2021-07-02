@@ -1,5 +1,5 @@
+import * as React from 'react';
 import {CollectionPropType} from '../onboarding/types';
-import React from 'react';
 
 declare type Props = CollectionPropType & {
     onAllStoriesEnd?: (collectionId: string) => void;

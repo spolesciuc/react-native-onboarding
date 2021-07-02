@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { CollectionPropType } from '../onboarding/types';
 import { View } from 'react-native';
-import React from 'react';
 import Slide from '../slide';
 import styles from './styles';
 

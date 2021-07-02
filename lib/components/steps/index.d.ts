@@ -1,5 +1,5 @@
+import * as React from 'react';
 import {ProgressProps} from '../progress';
-import React from 'react';
 
 declare type Props = ProgressProps & {
     ids: Array<number>;

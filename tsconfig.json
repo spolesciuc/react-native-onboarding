@@ -5,11 +5,12 @@
     "declaration": true,
     "jsx": "react",
     "lib": ["es2017", "dom"],
-    "target": "es2016",
+    "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noImplicitAny": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
     "pretty": true,
@@ -18,7 +19,7 @@
     "strictPropertyInitialization": false,
     "noUnusedLocals": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": true
   },
   "include": ["src"]
 }

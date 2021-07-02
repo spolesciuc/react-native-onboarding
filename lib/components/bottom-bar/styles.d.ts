@@ -1,6 +1,5 @@
 declare const styles: {
     wrapper: {
-        marginBottom: number;
         width: number;
         top?: number | undefined;
         backgroundColor: string;

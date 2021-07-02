@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { OnboardingContextProps } from './types';
-import React from 'react';
 
 const Context = React.createContext<OnboardingContextProps>({
   duration: 15000,

@@ -1,4 +1,3 @@
-import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { Platform, StyleSheet } from 'react-native';
 import Proportions from '../../utils/proportions';
 
@@ -11,7 +10,6 @@ const styles = StyleSheet.create({
         top: -25,
       },
     }),
-    marginBottom: getBottomSpace(),
     width: Proportions.slideSize.width,
   },
   innerWrapper: { backgroundColor: 'green' },
