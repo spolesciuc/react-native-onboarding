@@ -14,6 +14,7 @@ type Props = OnboardingProps & {
   onShow: (nextCollectionId: string) => void;
   onHide: () => void;
   slideIndex: number;
+  onChangeIndex: (index: number) => void;
   onNext: () => void;
   onPrev: () => void;
   onCollectionEnd: () => void;
@@ -29,6 +30,7 @@ const OnboardingProvider: React.FC<Props> = ({
   onPrev,
   onCollectionEnd,
   slideIndex,
+  onChangeIndex,
   currentCollection,
   color,
   unfilledColor,
@@ -61,7 +63,8 @@ const OnboardingProvider: React.FC<Props> = ({
       {currentCollection ? (
         <Collection
           {...currentCollection}
-          index={slideIndex}
+          slideIndex={slideIndex}
+          onChangeIndex={onChangeIndex}
           color={color}
           unfilledColor={unfilledColor}
           height={height}

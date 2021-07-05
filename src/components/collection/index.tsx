@@ -1,42 +1,54 @@
 import * as React from 'react';
 import { CollectionPropType } from '../onboarding/types';
-import { SlideProps } from '../slide';
 import { View } from 'react-native';
-import CubeNavigation from '../cube';
+import CubeCarousel from '../cube-carousel';
+import Slide, { SlideProps } from '../slide';
 import styles from './styles';
 
 export type CollectionProps = CollectionPropType & SlideProps;
 
 type Props = CollectionProps & {
   onAllStoriesEnd?: (collectionId: string) => void;
-  index: number;
+  slideIndex: number;
+  onChangeIndex: (index: number) => void;
 };
 
-const Collection: React.FC<Props> = (
-  {
-    // slides = [],
-    // index = 0,
-    // color,
-    // unfilledColor,
-    // height,
-  },
-) => {
-  // const ids = React.useMemo(() => {
-  //   return slides.map((_, i) => i);
-  // }, [slides]);
+const Collection: React.FC<Props> = ({
+  slides = [],
+  slideIndex = 0,
+  onChangeIndex,
+  color,
+  unfilledColor,
+  height,
+}) => {
+  const ids = React.useMemo(() => {
+    return slides.map((_, i) => i);
+  }, [slides]);
+
+  const renderSlide = React.useCallback(
+    (item) => {
+      return (
+        <Slide
+          stepIds={ids}
+          source={item.source}
+          renderBottomBar={item.renderBottomBar}
+          color={color}
+          unfilledColor={unfilledColor}
+          height={height}
+        />
+      );
+    },
+    [color, height, ids, unfilledColor],
+  );
 
   return (
     <View style={styles.wrapper}>
-      {/*<Slide*/}
-      {/*  key={index}*/}
-      {/*  stepIds={ids}*/}
-      {/*  source={slides[index].source}*/}
-      {/*  renderBottomBar={slides[index].renderBottomBar}*/}
-      {/*  color={color}*/}
-      {/*  unfilledColor={unfilledColor}*/}
-      {/*  height={height}*/}
-      {/*/>*/}
-      <CubeNavigation />
+      <CubeCarousel
+        slideIndex={slideIndex}
+        onChangeIndex={onChangeIndex}
+        data={slides}
+        renderSlide={renderSlide}
+      />
     </View>
   );
 };

@@ -1,4 +1,5 @@
 import { Dimensions, Platform, View } from 'react-native';
+import { SlidePropType, Slides } from '../onboarding/types';
 import Carousel, { getInputRangeFromIndexes } from 'react-native-snap-carousel';
 import React from 'react';
 
@@ -17,21 +18,18 @@ const MARGIN25 = (width - 320) / 31.3 + 7;
 const MARGIN50 = (width - 320) / 23.5 + 13;
 const MARGIN100 = (width - 320) / 47 + 5;
 
-const data = [
-  { id: 1, color: 'red' },
-  { id: 2, color: 'pink' },
-  { id: 3, color: 'yellow' },
-  { id: 4, color: 'green' },
-  { id: 5, color: 'blue' },
-];
+type Props = {
+  data: Slides;
+  renderSlide: (item: SlidePropType, index: number) => React.ReactElement;
+  slideIndex: number;
+  onChangeIndex: (index: number) => void;
+};
 
-type Props = {};
-const Cube: React.FC<Props> = ({}) => {
+const CubeCarousel: React.FC<Props> = ({ slideIndex, data, renderSlide }) => {
   const scrollInterpolator = React.useCallback((index, carouselProps) => {
     const range = [1, 0, -1];
     const inputRange = getInputRangeFromIndexes(range, index, carouselProps);
     const outputRange = range;
-
     return { inputRange, outputRange };
   }, []);
 
@@ -81,20 +79,30 @@ const Cube: React.FC<Props> = ({}) => {
     };
   }, []);
 
-  const renderItem = React.useCallback(({ item, index }) => {
-    return (
-      <View
-        key={index}
-        style={[
-          {
-            height: height,
-            backgroundColor: item.color,
-          },
-        ]}>
-        {item.title}
-      </View>
-    );
-  }, []);
+  const renderItem = React.useCallback(
+    ({ item, index }) => {
+      return (
+        <View
+          key={index}
+          style={[
+            {
+              height: height,
+              backgroundColor: item.color,
+            },
+          ]}>
+          {renderSlide(item, index)}
+        </View>
+      );
+    },
+    [renderSlide],
+  );
+
+  // const handleBeforeSnapToItem = React.useCallback(
+  //   (index: number) => {
+  //     onChangeIndex(index);
+  //   },
+  //   [onChangeIndex],
+  // );
 
   return (
     <View
@@ -106,7 +114,7 @@ const Cube: React.FC<Props> = ({}) => {
         backgroundColor: '#282828',
       }}>
       <Carousel
-        firstItem={1}
+        firstItem={slideIndex}
         containerCustomStyle={{ width }}
         data={data}
         useScrollView={true}
@@ -115,9 +123,10 @@ const Cube: React.FC<Props> = ({}) => {
         itemWidth={width}
         scrollInterpolator={scrollInterpolator}
         slideInterpolatedStyle={animatedStyles}
+        // onSnapToItem={handleBeforeSnapToItem}
       />
     </View>
   );
 };
 
-export default Cube;
+export default CubeCarousel;

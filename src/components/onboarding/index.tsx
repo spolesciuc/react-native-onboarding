@@ -54,6 +54,10 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
     console.log('@onCollectionEnd');
   }, []);
 
+  const onChangeIndex = React.useCallback((index: number) => {
+    setSlideIndex(index);
+  }, []);
+
   React.useEffect(() => {
     const current = data.find((x) => x.id === collectionId);
     setCurrentCollection(current);
@@ -88,6 +92,7 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
       onShow={onShow}
       onHide={onHide}
       slideIndex={slideIndex}
+      onChangeIndex={onChangeIndex}
       onNext={onNext}
       onPrev={onPrev}
       onCollectionEnd={onCollectionEnd}
