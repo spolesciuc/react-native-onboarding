@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-native": "^0.64.2"
+    "react-native": "^0.64.2",
+    "react-native-snap-carousel": "^3.9.1"
   },
   "peerDependencies": {
     "react": ">=16.13.1",

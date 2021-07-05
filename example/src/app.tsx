@@ -31,8 +31,8 @@ const App = () => {
   return (
     <Onboarding
       ref={ref}
-      color={'#FFFF'}
-      unfilledColor={'red'}
+      color={'red'}
+      unfilledColor={'#FFFF'}
       data={[
         {
           id: '1',
