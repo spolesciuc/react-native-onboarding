@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Image, Pressable, SafeAreaView, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
-import Gesture from '../gesture';
 import Steps, { StepsProps } from '../steps';
 import styles from './styles';
 import useCollection from '../../hooks/useCollection';
@@ -62,16 +61,6 @@ const Slide: React.FC<Props> = ({
     onNext();
   }, [onNext]);
 
-  const onSwipeLeft = React.useCallback(() => {
-    console.log('@onSwipeLeft');
-    handleNext();
-  }, [handleNext]);
-
-  const onSwipeRight = React.useCallback(() => {
-    console.log('@onSwipeRight');
-    handlePrev();
-  }, [handlePrev]);
-
   console.log('loading', loading);
 
   return (
@@ -82,39 +71,37 @@ const Slide: React.FC<Props> = ({
         onLoadEnd={handleLoadEnd}
         style={styles.image}
       />
-      <Gesture onSwipeLeft={onSwipeLeft} onSwipeRight={onSwipeRight}>
-        <SafeAreaView style={styles.safeArea}>
-          <Steps
-            key={start.toISOString()}
-            index={slideIndex}
-            ids={stepIds}
-            isPaused={isPaused}
-            ready={ready}
-            duration={duration}
-            onEndAnimate={handleProgressEnd}
-            color={color}
-            unfilledColor={unfilledColor}
-            height={height}
+      <SafeAreaView style={styles.safeArea}>
+        <Steps
+          key={start.toISOString()}
+          index={slideIndex}
+          ids={stepIds}
+          isPaused={isPaused}
+          ready={ready}
+          duration={duration}
+          onEndAnimate={handleProgressEnd}
+          color={color}
+          unfilledColor={unfilledColor}
+          height={height}
+        />
+        <View style={styles.content}>
+          <Pressable
+            style={[styles.sideContainer, styles.leftContainer]}
+            onPress={handlePrev}
+            onLongPress={onPauseStart}
+            onPressOut={onPauseEnd}
+            delayLongPress={300}
           />
-          <View style={styles.content}>
-            <Pressable
-              style={[styles.sideContainer, styles.leftContainer]}
-              onPress={handlePrev}
-              onLongPress={onPauseStart}
-              onPressOut={onPauseEnd}
-              delayLongPress={300}
-            />
-            <Pressable
-              style={[styles.sideContainer, styles.rightContainer]}
-              onPress={handleNext}
-              onLongPress={onPauseStart}
-              onPressOut={onPauseEnd}
-              delayLongPress={300}
-            />
-          </View>
-          {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
-        </SafeAreaView>
-      </Gesture>
+          <Pressable
+            style={[styles.sideContainer, styles.rightContainer]}
+            onPress={handleNext}
+            onLongPress={onPauseStart}
+            onPressOut={onPauseEnd}
+            delayLongPress={300}
+          />
+        </View>
+        {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
+      </SafeAreaView>
     </View>
   );
 };

@@ -25,7 +25,14 @@ type Props = {
   onChangeIndex: (index: number) => void;
 };
 
-const CubeCarousel: React.FC<Props> = ({ slideIndex, data, renderSlide }) => {
+const CubeCarousel: React.FC<Props> = ({
+  slideIndex,
+  data,
+  renderSlide,
+  onChangeIndex,
+}) => {
+  const ref = React.useRef<any>();
+
   const scrollInterpolator = React.useCallback((index, carouselProps) => {
     const range = [1, 0, -1];
     const inputRange = getInputRangeFromIndexes(range, index, carouselProps);
@@ -97,12 +104,16 @@ const CubeCarousel: React.FC<Props> = ({ slideIndex, data, renderSlide }) => {
     [renderSlide],
   );
 
-  // const handleBeforeSnapToItem = React.useCallback(
-  //   (index: number) => {
-  //     onChangeIndex(index);
-  //   },
-  //   [onChangeIndex],
-  // );
+  const handleBeforeSnapToItem = React.useCallback(
+    (index: number) => {
+      onChangeIndex(index);
+    },
+    [onChangeIndex],
+  );
+
+  React.useEffect(() => {
+    ref.current?.snapToItem(slideIndex, true);
+  }, [slideIndex]);
 
   return (
     <View
@@ -114,7 +125,7 @@ const CubeCarousel: React.FC<Props> = ({ slideIndex, data, renderSlide }) => {
         backgroundColor: '#282828',
       }}>
       <Carousel
-        firstItem={slideIndex}
+        ref={ref}
         containerCustomStyle={{ width }}
         data={data}
         useScrollView={true}
@@ -123,7 +134,7 @@ const CubeCarousel: React.FC<Props> = ({ slideIndex, data, renderSlide }) => {
         itemWidth={width}
         scrollInterpolator={scrollInterpolator}
         slideInterpolatedStyle={animatedStyles}
-        // onSnapToItem={handleBeforeSnapToItem}
+        onSnapToItem={handleBeforeSnapToItem}
       />
     </View>
   );
