@@ -5,12 +5,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 4,
     flexDirection: 'row',
-    backgroundColor: '#FFF',
-    height: 2,
+    overflow: 'hidden',
   },
-  progress: {
-    backgroundColor: 'red',
-  },
+  progress: {},
 });
 
 export default styles;

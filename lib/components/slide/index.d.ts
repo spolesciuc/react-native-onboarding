@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {SlidePropType} from '../onboarding/types';
+import {StepsProps} from '../steps';
 
-declare type Props = SlidePropType & {
+export declare type SlideProps = StepsProps & {};
+declare type Props = SlidePropType & SlideProps & {
     stepIds: Array<number>;
 };
 declare const Slide: React.FC<Props>;

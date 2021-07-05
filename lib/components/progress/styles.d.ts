@@ -3,11 +3,8 @@ declare const styles: {
         flex: number;
         marginHorizontal: number;
         flexDirection: "row";
-        backgroundColor: string;
-        height: number;
+        overflow: "hidden";
     };
-    progress: {
-        backgroundColor: string;
-    };
+    progress: {};
 };
 export default styles;

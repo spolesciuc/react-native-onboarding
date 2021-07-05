@@ -1,15 +1,23 @@
 import * as React from 'react';
 import { CollectionPropType } from '../onboarding/types';
 import { View } from 'react-native';
-import Slide from '../slide';
+import Slide, { SlideProps } from '../slide';
 import styles from './styles';
 
-type Props = CollectionPropType & {
+export type CollectionProps = CollectionPropType & SlideProps;
+
+type Props = CollectionProps & {
   onAllStoriesEnd?: (collectionId: string) => void;
   index: number;
 };
 
-const Collection: React.FC<Props> = ({ slides = [], index = 0 }) => {
+const Collection: React.FC<Props> = ({
+  slides = [],
+  index = 0,
+  color,
+  unfilledColor,
+  height,
+}) => {
   const ids = React.useMemo(() => {
     return slides.map((_, i) => i);
   }, [slides]);
@@ -21,6 +29,9 @@ const Collection: React.FC<Props> = ({ slides = [], index = 0 }) => {
         stepIds={ids}
         source={slides[index].source}
         renderBottomBar={slides[index].renderBottomBar}
+        color={color}
+        unfilledColor={unfilledColor}
+        height={height}
       />
     </View>
   );

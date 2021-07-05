@@ -4,7 +4,9 @@ import Progress, { ProgressProps } from '../progress';
 import styles from './styles';
 import useProgress from '../../hooks/useProgress';
 
-type Props = ProgressProps & {
+export type StepsProps = ProgressProps & {};
+
+type Props = StepsProps & {
   ids: Array<number>;
   index: number;
   isPaused: boolean;
@@ -22,6 +24,7 @@ const Steps: React.FC<Props> = ({
   duration,
   ready,
   onEndAnimate,
+  height,
 }) => {
   const { progress } = useProgress(isPaused, duration, ready, onEndAnimate);
 
@@ -34,6 +37,7 @@ const Steps: React.FC<Props> = ({
           progress={i === index ? progress : null}
           color={color}
           unfilledColor={unfilledColor}
+          height={height}
         />
       ))}
     </View>

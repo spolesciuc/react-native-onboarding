@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BottomBar from './src/components/bottom-bar';
+import BottomBar from './components/bottom-bar';
 import Onboarding, {
   OnboardingRefProps,
 } from '@stanislavpoleshuk/react-native-onboarding';
@@ -31,24 +31,26 @@ const App = () => {
   return (
     <Onboarding
       ref={ref}
+      color={'#FFFF'}
+      unfilledColor={'red'}
       data={[
         {
           id: '1',
           slides: [
             {
-              source: require('./assets/Onbording_1.webp'),
+              source: require('../assets/Onbording_1.webp'),
               renderBottomBar: renderBottomBar,
             },
             {
-              source: require('./assets/Onbording_2.webp'),
+              source: require('../assets/Onbording_2.webp'),
               renderBottomBar: renderBottomBar,
             },
             {
-              source: require('./assets/Onbording_3.webp'),
+              source: require('../assets/Onbording_3.webp'),
               renderBottomBar: renderBottomBar,
             },
             {
-              source: require('./assets/Onbording_4.webp'),
+              source: require('../assets/Onbording_4.webp'),
               renderBottomBar: renderBottomBar,
             },
           ],

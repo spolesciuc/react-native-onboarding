@@ -30,6 +30,9 @@ const OnboardingProvider: React.FC<Props> = ({
   onCollectionEnd,
   slideIndex,
   currentCollection,
+  color,
+  unfilledColor,
+  height,
 }) => {
   const value = React.useMemo<OnboardingContextProps>(() => {
     return {
@@ -56,7 +59,13 @@ const OnboardingProvider: React.FC<Props> = ({
   return (
     <Context.Provider value={value}>
       {currentCollection ? (
-        <Collection {...currentCollection} index={slideIndex} />
+        <Collection
+          {...currentCollection}
+          index={slideIndex}
+          color={color}
+          unfilledColor={unfilledColor}
+          height={height}
+        />
       ) : null}
     </Context.Provider>
   );

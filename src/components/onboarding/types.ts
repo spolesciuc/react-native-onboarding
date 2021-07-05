@@ -5,6 +5,7 @@ export type SlidePropType = {
   source: ImageSourcePropType;
   renderBottomBar?: () => React.ReactElement;
 };
+
 export type Slides = Array<SlidePropType>;
 
 export type CollectionPropType = {
@@ -16,6 +17,9 @@ export type Collections = Array<CollectionPropType>;
 
 export type OnboardingProps = {
   duration?: number;
+  color: string;
+  unfilledColor: string;
+  height?: number;
 };
 
 export type OnboardingHandle = {

@@ -5,6 +5,7 @@ import styles from './styles';
 export type ProgressProps = {
   color: string;
   unfilledColor: string;
+  height?: number;
 };
 
 type Props = ProgressProps & {
@@ -12,8 +13,14 @@ type Props = ProgressProps & {
   progress: Animated.AnimatedValue | null;
 };
 
-const Progress: React.FC<Props> = ({ completed, progress }) => {
-  const styled = React.useMemo(() => {
+const Progress: React.FC<Props> = ({
+  completed,
+  progress,
+  height = 2,
+  color = 'red',
+  unfilledColor = 'white',
+}) => {
+  const lineStyled = React.useMemo(() => {
     let stateStyle: Animated.AnimatedProps<StyleProp<ViewStyle>> = {
       flex: 0,
     };
@@ -27,12 +34,29 @@ const Progress: React.FC<Props> = ({ completed, progress }) => {
       };
     }
 
-    return StyleSheet.flatten([styles.progress, stateStyle]);
-  }, [completed, progress]);
+    return StyleSheet.flatten([
+      styles.progress,
+      stateStyle,
+      {
+        backgroundColor: color,
+      },
+    ]);
+  }, [color, completed, progress]);
+
+  const styled = React.useMemo(() => {
+    return StyleSheet.flatten([
+      styles.wrapper,
+      {
+        height,
+        backgroundColor: unfilledColor,
+        borderRadius: height / 2,
+      },
+    ]);
+  }, [height, unfilledColor]);
 
   return (
-    <View style={[styles.wrapper]}>
-      <Animated.View style={styled} />
+    <View style={styled}>
+      <Animated.View style={lineStyled} />
     </View>
   );
 };

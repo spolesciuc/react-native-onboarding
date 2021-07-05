@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {ProgressProps} from '../progress';
 
-declare type Props = ProgressProps & {
+export declare type StepsProps = ProgressProps & {};
+declare type Props = StepsProps & {
     ids: Array<number>;
     index: number;
     isPaused: boolean;

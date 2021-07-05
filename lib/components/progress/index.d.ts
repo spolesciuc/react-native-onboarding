@@ -4,6 +4,7 @@ import {Animated} from 'react-native';
 export declare type ProgressProps = {
     color: string;
     unfilledColor: string;
+    height?: number;
 };
 declare type Props = ProgressProps & {
     completed: boolean;

@@ -3,15 +3,25 @@ import { Image, Pressable, SafeAreaView, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
 import Gesture from '../gesture';
-import Steps from '../steps';
+import Steps, { StepsProps } from '../steps';
 import styles from './styles';
 import useCollection from '../../hooks/useCollection';
 
-type Props = SlidePropType & {
-  stepIds: Array<number>;
-};
+export type SlideProps = StepsProps & {};
 
-const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
+type Props = SlidePropType &
+  SlideProps & {
+    stepIds: Array<number>;
+  };
+
+const Slide: React.FC<Props> = ({
+  source,
+  renderBottomBar,
+  stepIds,
+  color,
+  unfilledColor,
+  height,
+}) => {
   const [isPaused, setIsPaused] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const { onPrev, onNext, slideIndex, duration } = useCollection();
@@ -77,13 +87,14 @@ const Slide: React.FC<Props> = ({ source, renderBottomBar, stepIds }) => {
           <Steps
             key={start.toISOString()}
             index={slideIndex}
-            color={'red'}
-            unfilledColor={'blue'}
             ids={stepIds}
             isPaused={isPaused}
             ready={ready}
             duration={duration}
             onEndAnimate={handleProgressEnd}
+            color={color}
+            unfilledColor={unfilledColor}
+            height={height}
           />
           <View style={styles.content}>
             <Pressable

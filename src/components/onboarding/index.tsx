@@ -12,7 +12,7 @@ type Props = OnboardingProps & {
 };
 
 const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
-  { data, duration },
+  { data, duration, color, unfilledColor, height },
   forwardedRef,
 ) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -92,6 +92,9 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
       onPrev={onPrev}
       onCollectionEnd={onCollectionEnd}
       currentCollection={currentCollection}
+      color={color}
+      unfilledColor={unfilledColor}
+      height={height}
     />
   );
 };
