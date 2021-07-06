@@ -20,7 +20,6 @@ const useProgress = (
   );
 
   const resetTimer = React.useCallback(() => {
-    setRunning(false);
     pauseDuration.current = 0;
     progress.setValue(0);
     progress.stopAnimation();
@@ -30,11 +29,24 @@ const useProgress = (
     const value = (progress as any).__getValue();
     if (running && value === 1) {
       onEndAnimate();
-      resetTimer();
+      setRunning(false);
     }
-  }, [onEndAnimate, progress, resetTimer, running]);
+  }, [onEndAnimate, progress, running]);
 
   const startTimer = React.useCallback(() => {
+    resetTimer();
+    animation.current = Animated.timing(progress, {
+      toValue: 1,
+      duration: defaultDuration,
+      useNativeDriver: false,
+      easing: Easing.ease,
+      isInteraction: false,
+    });
+    animation.current.start(handleEndAnimate);
+    setRunning(true);
+  }, [defaultDuration, handleEndAnimate, progress, resetTimer]);
+
+  const continueTimer = React.useCallback(() => {
     const duration = defaultDuration - pauseDuration.current;
     animation.current = Animated.timing(progress, {
       toValue: 1,
@@ -54,7 +66,7 @@ const useProgress = (
     pauseDuration.current = value * defaultDuration;
   }, [defaultDuration, progress]);
 
-  return { progress, startTimer, pauseTimer, resetTimer };
+  return { progress, startTimer, continueTimer, pauseTimer, resetTimer };
 };
 
 export default useProgress;

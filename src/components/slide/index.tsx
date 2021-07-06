@@ -24,7 +24,7 @@ const Slide: React.FC<Props> = ({
   height,
 }) => {
   const [isPaused, setIsPaused] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  const [, setLoading] = React.useState(false);
   const { onPrev, onNext, slideIndex, duration } = useCollection();
   const [ready, setReady] = React.useState(false);
   const [start, setStart] = React.useState(new Date());
@@ -68,8 +68,6 @@ const Slide: React.FC<Props> = ({
   const handleNext = React.useCallback(() => {
     onNext();
   }, [onNext]);
-
-  console.log('loading', loading);
 
   return (
     <View style={styles.wrapper}>
