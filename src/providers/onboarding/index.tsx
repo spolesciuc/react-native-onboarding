@@ -4,6 +4,7 @@ import {
   Collections,
   OnboardingProps,
 } from '../../components/onboarding/types';
+import { Modal } from 'react-native';
 import { OnboardingContextProps } from './types';
 import Collection from '../../components/collection';
 import Context from './context';
@@ -59,18 +60,20 @@ const OnboardingProvider: React.FC<Props> = ({
   ]);
 
   return (
-    <Context.Provider value={value}>
-      {currentCollection ? (
-        <Collection
-          {...currentCollection}
-          slideIndex={slideIndex}
-          onChangeIndex={onChangeIndex}
-          color={color}
-          unfilledColor={unfilledColor}
-          height={height}
-        />
-      ) : null}
-    </Context.Provider>
+    <Modal animationType="slide" transparent={true} visible={isVisible}>
+      <Context.Provider value={value}>
+        {currentCollection ? (
+          <Collection
+            {...currentCollection}
+            slideIndex={slideIndex}
+            onChangeIndex={onChangeIndex}
+            color={color}
+            unfilledColor={unfilledColor}
+            height={height}
+          />
+        ) : null}
+      </Context.Provider>
+    </Modal>
   );
 };
 

@@ -25,7 +25,8 @@ const Slide: React.FC<Props> = ({
 }) => {
   const [isPaused, setIsPaused] = React.useState(false);
   const [, setLoading] = React.useState(false);
-  const { onPrev, onNext, slideIndex, duration } = useCollection();
+  const { onPrev, onNext, slideIndex, duration, onCollectionEnd } =
+    useCollection();
   const [ready, setReady] = React.useState(false);
   const [start, setStart] = React.useState(new Date());
 
@@ -37,15 +38,14 @@ const Slide: React.FC<Props> = ({
     setIsPaused(false);
   }, []);
 
-  console.log(index, slideIndex, stepIds);
-
   const handleProgressEnd = React.useCallback(() => {
     if (index === slideIndex && slideIndex === stepIds[stepIds.length - 1]) {
       setReady(false);
+      onCollectionEnd();
       return;
     }
     onNext();
-  }, [index, onNext, slideIndex, stepIds]);
+  }, [index, onCollectionEnd, onNext, slideIndex, stepIds]);
 
   const handleLoadStart = React.useCallback(() => {
     setLoading(true);

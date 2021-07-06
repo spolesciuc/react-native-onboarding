@@ -16,7 +16,7 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
   forwardedRef,
 ) => {
   const [isVisible, setIsVisible] = React.useState(false);
-  const [collectionId, setSelectionId] = React.useState<string | undefined>(
+  const [collectionId, setCollectionId] = React.useState<string | undefined>(
     undefined,
   );
   const [currentCollection, setCurrentCollection] = React.useState<
@@ -27,12 +27,12 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
 
   const onShow = React.useCallback((nextCollectionId: string) => {
     setIsVisible(true);
-    setSelectionId(nextCollectionId);
+    setCollectionId(nextCollectionId);
   }, []);
 
   const onHide = React.useCallback(() => {
     setIsVisible(false);
-    setSelectionId(undefined);
+    setCollectionId(undefined);
   }, []);
 
   const onPrev = React.useCallback(() => {
@@ -51,22 +51,26 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
   }, [currentCollection?.slides.length, slideIndex]);
 
   const onCollectionEnd = React.useCallback(() => {
-    console.log('@onCollectionEnd');
-  }, []);
+    onHide();
+  }, [onHide]);
 
   const onChangeIndex = React.useCallback((index: number) => {
     setSlideIndex(index);
   }, []);
 
   React.useEffect(() => {
-    const current = data.find((x) => x.id === collectionId);
-    setCurrentCollection(current);
-    setSlideIndex(current?.startIndex || 0);
-  }, [collectionId, data]);
+    if (!isVisible) {
+      setCurrentCollection(undefined);
+    } else {
+      const current = data.find((x) => x.id === collectionId);
+      setCurrentCollection(current);
+      setSlideIndex(current?.startIndex || 0);
+    }
+  }, [collectionId, data, isVisible]);
 
   React.useEffect(() => {
     const id = data.length > 0 ? data[0].id : undefined;
-    setSelectionId(id);
+    setCollectionId(id);
   }, [data]);
 
   React.useImperativeHandle(forwardedRef, () => ({
