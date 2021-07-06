@@ -24,7 +24,6 @@ DerivedData
 # Android/IntelliJ
 #
 build/
-coverage/
 .idea
 .gradle
 local.properties
@@ -39,6 +38,7 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
+*.keystore
 !debug.keystore
 
 # fastlane
@@ -57,26 +57,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-/ios/build
-
-./StyleDeclaration.ts
-
-
-# ENV variables
-# To active your local copy please run cp .env.example .env
-.env
-*.hprof
-Appfile
-*.ipa
-*.dSYM.*
-/ios/CopybetRN.xcarchive
-
-# Graphql configs and generated files
-.graphqlconfig
-*.graphql
-schema.json
-
-
-# Custom components
-_examples
-lib/
