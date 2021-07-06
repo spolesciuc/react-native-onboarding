@@ -59,9 +59,7 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
   }, []);
 
   React.useEffect(() => {
-    if (!isVisible) {
-      setCurrentCollection(undefined);
-    } else {
+    if (isVisible) {
       const current = data.find((x) => x.id === collectionId);
       setCurrentCollection(current);
       setSlideIndex(current?.startIndex || 0);
