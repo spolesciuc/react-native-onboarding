@@ -37,9 +37,15 @@ const Slide: React.FC<Props> = ({
     setIsPaused(false);
   }, []);
 
+  console.log(index, slideIndex, stepIds);
+
   const handleProgressEnd = React.useCallback(() => {
+    if (index === slideIndex && slideIndex === stepIds[stepIds.length - 1]) {
+      setReady(false);
+      return;
+    }
     onNext();
-  }, [onNext]);
+  }, [index, onNext, slideIndex, stepIds]);
 
   const handleLoadStart = React.useCallback(() => {
     setLoading(true);
@@ -75,6 +81,7 @@ const Slide: React.FC<Props> = ({
       />
       <SafeAreaView style={styles.safeArea}>
         <Steps
+          key={start.toISOString()}
           index={slideIndex}
           ids={stepIds}
           isPaused={isPaused}
