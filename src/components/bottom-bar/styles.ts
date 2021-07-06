@@ -3,7 +3,6 @@ import Proportions from '../../utils/proportions';
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'green',
     zIndex: 999,
     ...Platform.select({
       android: {
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
     }),
     width: Proportions.slideSize.width,
   },
-  innerWrapper: { backgroundColor: 'green' },
+  innerWrapper: {},
 });
 
 export default styles;
