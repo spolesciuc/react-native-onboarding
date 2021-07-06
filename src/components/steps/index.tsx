@@ -22,17 +22,42 @@ const Steps: React.FC<Props> = ({
   unfilledColor,
   isPaused,
   duration,
+  height,
   ready,
   onEndAnimate,
-  height,
 }) => {
-  const { progress } = useProgress(isPaused, duration, ready, onEndAnimate);
+  const { progress, pauseTimer, startTimer, resetTimer } = useProgress(
+    duration,
+    onEndAnimate,
+  );
+
+  React.useEffect(() => {
+    if (ready) {
+      if (isPaused) {
+        pauseTimer();
+      } else {
+        startTimer();
+      }
+    }
+  }, [ready, isPaused, pauseTimer, startTimer]);
+
+  React.useEffect(() => {
+    if (ready) {
+      startTimer();
+    } else {
+      resetTimer();
+    }
+
+    return () => {
+      resetTimer();
+    };
+  }, [startTimer, resetTimer, ready]);
 
   return (
     <View style={styles.wrapper}>
       {ids.map((i) => (
         <Progress
-          key={`${i}${i === index && ':active'}`}
+          key={i}
           completed={i < index}
           progress={i === index ? progress : null}
           color={color}

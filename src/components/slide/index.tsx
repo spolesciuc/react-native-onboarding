@@ -10,12 +10,14 @@ export type SlideProps = StepsProps & {};
 
 type Props = SlidePropType &
   SlideProps & {
+    index: number;
     stepIds: Array<number>;
   };
 
 const Slide: React.FC<Props> = ({
   source,
   renderBottomBar,
+  index,
   stepIds,
   color,
   unfilledColor,
@@ -73,11 +75,10 @@ const Slide: React.FC<Props> = ({
       />
       <SafeAreaView style={styles.safeArea}>
         <Steps
-          key={start.toISOString()}
           index={slideIndex}
           ids={stepIds}
           isPaused={isPaused}
-          ready={ready}
+          ready={ready && index === slideIndex}
           duration={duration}
           onEndAnimate={handleProgressEnd}
           color={color}

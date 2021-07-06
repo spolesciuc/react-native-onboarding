@@ -8,14 +8,12 @@ const App = () => {
   const ref = React.useRef<OnboardingRefProps>(null);
 
   const handlePressPrev = React.useCallback(() => {
-    console.log('@handlePressPrev');
     if (ref?.current) {
       ref.current.onPrev();
     }
   }, []);
 
   const handlePressNext = React.useCallback(() => {
-    console.log('@handlePressNext');
     if (ref?.current) {
       ref.current.onNext();
     }

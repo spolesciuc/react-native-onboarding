@@ -90,7 +90,6 @@ const CubeCarousel: React.FC<Props> = ({
     ({ item, index }) => {
       return (
         <View
-          key={index}
           style={[
             {
               height: height,

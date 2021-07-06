@@ -26,9 +26,10 @@ const Collection: React.FC<Props> = ({
   }, [slides]);
 
   const renderSlide = React.useCallback(
-    (item) => {
+    (item, index) => {
       return (
         <Slide
+          index={index}
           stepIds={ids}
           source={item.source}
           renderBottomBar={item.renderBottomBar}
