@@ -7,6 +7,7 @@ import { ActivityIndicator, Button, StyleSheet, View } from 'react-native';
 
 const App = () => {
   const ref = React.useRef<OnboardingRefProps>(null);
+
   const handlePressSkip = React.useCallback(() => {
     if (ref?.current) {
       ref.current.onHide();
