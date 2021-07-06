@@ -10,9 +10,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@stanislavpoleshuk/react-native-onboarding": "file:../lib",
-    "react": "17.0.1",
-    "react-native": "0.64.1",
+    "@stanislavpoleshuk/react-native-onboarding": "^0.1.2",
+    "react": "16.13.1",
+    "react-native": "0.63.4",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-webp-format": "^1.1.2"
   },
