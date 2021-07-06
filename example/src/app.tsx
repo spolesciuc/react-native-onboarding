@@ -3,7 +3,7 @@ import BottomBar from './components/bottom-bar';
 import Onboarding, {
   OnboardingRefProps,
 } from '@stanislavpoleshuk/react-native-onboarding';
-import { Button, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Button, StyleSheet, View } from 'react-native';
 
 const App = () => {
   const ref = React.useRef<OnboardingRefProps>(null);
@@ -42,6 +42,14 @@ const App = () => {
     }
   }, []);
 
+  const renderLoader = React.useCallback(() => {
+    return (
+      <View style={styles.loaderWrapper}>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </View>
+    );
+  }, []);
+
   return (
     <View>
       <View style={styles.button}>
@@ -51,6 +59,7 @@ const App = () => {
         ref={ref}
         color={'red'}
         unfilledColor={'#FFFF'}
+        renderLoader={renderLoader}
         data={[
           {
             id: '1',
@@ -84,5 +93,9 @@ export default App;
 const styles = StyleSheet.create({
   button: {
     marginTop: 100,
+  },
+  loaderWrapper: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });

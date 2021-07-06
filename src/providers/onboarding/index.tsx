@@ -36,6 +36,7 @@ const OnboardingProvider: React.FC<Props> = ({
   color,
   unfilledColor,
   height,
+  renderLoader,
 }) => {
   const value = React.useMemo<OnboardingContextProps>(() => {
     return {
@@ -47,6 +48,7 @@ const OnboardingProvider: React.FC<Props> = ({
       onPrev,
       onCollectionEnd,
       slideIndex,
+      renderLoader,
     };
   }, [
     duration,
@@ -56,6 +58,7 @@ const OnboardingProvider: React.FC<Props> = ({
     onNext,
     onPrev,
     onShow,
+    renderLoader,
     slideIndex,
   ]);
 

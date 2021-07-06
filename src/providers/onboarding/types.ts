@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type OnboardingContextProps = {
   duration: number;
   isVisible: boolean;
@@ -7,4 +9,5 @@ export type OnboardingContextProps = {
   onNext: () => void;
   onPrev: () => void;
   onCollectionEnd: () => void;
+  renderLoader?: () => React.ReactElement;
 };

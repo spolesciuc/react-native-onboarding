@@ -12,7 +12,7 @@ type Props = OnboardingProps & {
 };
 
 const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
-  { data, duration, color, unfilledColor, height },
+  { data, duration, color, unfilledColor, height, renderLoader },
   forwardedRef,
 ) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -51,8 +51,8 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
   }, [currentCollection?.slides.length, slideIndex]);
 
   const onCollectionEnd = React.useCallback(() => {
-    onHide();
-  }, [onHide]);
+    setIsVisible(false);
+  }, []);
 
   const onChangeIndex = React.useCallback((index: number) => {
     setSlideIndex(index);
@@ -102,6 +102,7 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
       color={color}
       unfilledColor={unfilledColor}
       height={height}
+      renderLoader={renderLoader}
     />
   );
 };

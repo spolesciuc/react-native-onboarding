@@ -24,9 +24,15 @@ const Slide: React.FC<Props> = ({
   height,
 }) => {
   const [isPaused, setIsPaused] = React.useState(false);
-  const [, setLoading] = React.useState(false);
-  const { onPrev, onNext, slideIndex, duration, onCollectionEnd } =
-    useCollection();
+  const [loading, setLoading] = React.useState(false);
+  const {
+    onPrev,
+    onNext,
+    slideIndex,
+    duration,
+    onCollectionEnd,
+    renderLoader,
+  } = useCollection();
   const [ready, setReady] = React.useState(false);
   const [start, setStart] = React.useState(new Date());
 
@@ -69,6 +75,10 @@ const Slide: React.FC<Props> = ({
     onNext();
   }, [onNext]);
 
+  const Loader = React.useCallback(() => {
+    return renderLoader ? renderLoader() : null;
+  }, [renderLoader]);
+
   return (
     <View style={styles.wrapper}>
       <Image
@@ -78,35 +88,41 @@ const Slide: React.FC<Props> = ({
         style={styles.image}
       />
       <SafeAreaView style={styles.safeArea}>
-        <Steps
-          key={start.toISOString()}
-          index={slideIndex}
-          ids={stepIds}
-          isPaused={isPaused}
-          ready={ready && index === slideIndex}
-          duration={duration}
-          onEndAnimate={handleProgressEnd}
-          color={color}
-          unfilledColor={unfilledColor}
-          height={height}
-        />
-        <View style={styles.content}>
-          <Pressable
-            style={[styles.sideContainer, styles.leftContainer]}
-            onPress={handlePrev}
-            onLongPress={onPauseStart}
-            onPressOut={onPauseEnd}
-            delayLongPress={300}
-          />
-          <Pressable
-            style={[styles.sideContainer, styles.rightContainer]}
-            onPress={handleNext}
-            onLongPress={onPauseStart}
-            onPressOut={onPauseEnd}
-            delayLongPress={300}
-          />
-        </View>
-        {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
+        {loading ? (
+          <Loader />
+        ) : (
+          <React.Fragment>
+            <Steps
+              key={start.toISOString()}
+              index={slideIndex}
+              ids={stepIds}
+              isPaused={isPaused}
+              ready={ready && index === slideIndex}
+              duration={duration}
+              onEndAnimate={handleProgressEnd}
+              color={color}
+              unfilledColor={unfilledColor}
+              height={height}
+            />
+            <View style={styles.content}>
+              <Pressable
+                style={[styles.sideContainer, styles.leftContainer]}
+                onPress={handlePrev}
+                onLongPress={onPauseStart}
+                onPressOut={onPauseEnd}
+                delayLongPress={300}
+              />
+              <Pressable
+                style={[styles.sideContainer, styles.rightContainer]}
+                onPress={handleNext}
+                onLongPress={onPauseStart}
+                onPressOut={onPauseEnd}
+                delayLongPress={300}
+              />
+            </View>
+            {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
+          </React.Fragment>
+        )}
       </SafeAreaView>
     </View>
   );

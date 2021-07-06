@@ -20,6 +20,7 @@ export type OnboardingProps = {
   color: string;
   unfilledColor: string;
   height?: number;
+  renderLoader?: () => React.ReactElement;
 };
 
 export type OnboardingHandle = {

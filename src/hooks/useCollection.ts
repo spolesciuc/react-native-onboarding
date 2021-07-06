@@ -10,8 +10,22 @@ const useCollection = () => {
     );
   }
 
-  const { onNext, onPrev, slideIndex, duration, onCollectionEnd } = context;
-  return { onNext, onPrev, slideIndex, duration, onCollectionEnd };
+  const {
+    onNext,
+    onPrev,
+    slideIndex,
+    duration,
+    onCollectionEnd,
+    renderLoader,
+  } = context;
+  return {
+    onNext,
+    onPrev,
+    slideIndex,
+    duration,
+    onCollectionEnd,
+    renderLoader,
+  };
 };
 
 export default useCollection;
