@@ -7,6 +7,11 @@ import { Button, StyleSheet, View } from 'react-native';
 
 const App = () => {
   const ref = React.useRef<OnboardingRefProps>(null);
+  const handlePressSkip = React.useCallback(() => {
+    if (ref?.current) {
+      ref.current.onHide();
+    }
+  }, []);
 
   const handlePressPrev = React.useCallback(() => {
     if (ref?.current) {
@@ -22,9 +27,13 @@ const App = () => {
 
   const renderBottomBar = React.useCallback(
     () => (
-      <BottomBar onPressPrev={handlePressPrev} onPressNext={handlePressNext} />
+      <BottomBar
+        onPressSkip={handlePressSkip}
+        onPressPrev={handlePressPrev}
+        onPressNext={handlePressNext}
+      />
     ),
-    [handlePressNext, handlePressPrev],
+    [handlePressNext, handlePressPrev, handlePressSkip],
   );
 
   const handleOpen = React.useCallback(() => {

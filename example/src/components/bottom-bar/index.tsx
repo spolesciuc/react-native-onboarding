@@ -3,18 +3,26 @@ import { Pressable, Text, View } from 'react-native';
 import styles from './styles';
 
 type Props = {
+  onPressSkip: () => void;
   onPressPrev: () => void;
   onPressNext: () => void;
 };
 
-const BottomBar: React.FC<Props> = ({ onPressPrev, onPressNext }) => {
+const BottomBar: React.FC<Props> = ({
+  onPressSkip,
+  onPressPrev,
+  onPressNext,
+}) => {
   return (
     <View style={styles.wrapper}>
+      <Pressable onPress={onPressSkip}>
+        <Text>Skip</Text>
+      </Pressable>
       <Pressable onPress={onPressPrev}>
-        <Text>prev</Text>
+        <Text>Prev</Text>
       </Pressable>
       <Pressable onPress={onPressNext}>
-        <Text>next</Text>
+        <Text>Next</Text>
       </Pressable>
     </View>
   );
