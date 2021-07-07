@@ -7,6 +7,7 @@ import { ActivityIndicator, Button, StyleSheet, View } from 'react-native';
 
 const App = () => {
   const ref = React.useRef<OnboardingRefProps>(null);
+
   const handlePressSkip = React.useCallback(() => {
     if (ref?.current) {
       ref.current.onHide();
@@ -50,6 +51,13 @@ const App = () => {
     );
   }, []);
 
+  const handleOnChange = React.useCallback(
+    (collectionId: string | undefined, slideId: string | undefined) => {
+      console.log(collectionId, slideId);
+    },
+    [],
+  );
+
   return (
     <View>
       <View style={styles.button}>
@@ -57,26 +65,32 @@ const App = () => {
       </View>
       <Onboarding
         ref={ref}
+        duration={2000}
         color={'red'}
         unfilledColor={'#FFFF'}
         renderLoader={renderLoader}
+        onChange={handleOnChange}
         data={[
           {
             id: '1',
             slides: [
               {
+                id: 'onboarding_1_welcome',
                 source: require('../assets/Onbording_1.webp'),
                 renderBottomBar: renderBottomBar,
               },
               {
+                id: 'onboarding_2_choose',
                 source: require('../assets/Onbording_2.webp'),
                 renderBottomBar: renderBottomBar,
               },
               {
+                id: 'onboarding_3_copy',
                 source: require('../assets/Onbording_3.webp'),
                 renderBottomBar: renderBottomBar,
               },
               {
+                id: 'onboarding_4_bet',
                 source: require('../assets/Onbording_4.webp'),
                 renderBottomBar: renderBottomBar,
               },

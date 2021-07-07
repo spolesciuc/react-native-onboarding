@@ -1175,10 +1175,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stanislavpoleshuk/react-native-onboarding@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@stanislavpoleshuk/react-native-onboarding/-/react-native-onboarding-0.1.2.tgz#236695d74ea7812dd93eb6acfabbb93462a85831"
-  integrity sha512-xvwNYa6briyDmYDw27xLMy6wWxthnzBcoJmZ4P6I0Nw9t4agxRweB5X8aR/ASE2zqu3xWpKDcSUbix/ZMrGqvA==
+"@stanislavpoleshuk/react-native-onboarding@0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@stanislavpoleshuk/react-native-onboarding/-/react-native-onboarding-0.1.3.tgz#b3396f23ef47fe8afea7b1e78dfaa0dbc349e91e"
+  integrity sha512-v1a/Z578NL4cBDGEq3yW3xidOtmTA7oroS/6T4NpElHHi60SczeRYzj4ZBonNeGD/n/k/Py7IMw6He0+KzBL5Q==
   dependencies:
     react "16.13.1"
     react-native "0.63.4"

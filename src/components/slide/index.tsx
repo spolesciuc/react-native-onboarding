@@ -47,7 +47,10 @@ const Slide: React.FC<Props> = ({
   const handleProgressEnd = React.useCallback(() => {
     if (index === slideIndex && slideIndex === stepIds[stepIds.length - 1]) {
       setReady(false);
-      onCollectionEnd();
+      const t = setTimeout(() => {
+        onCollectionEnd();
+        clearTimeout(t);
+      }, 10);
       return;
     }
     onNext();
