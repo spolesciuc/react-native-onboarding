@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CollectionPropType } from '../onboarding/types';
+import { CollectionPropType, SlidePropType } from '../onboarding/types';
 import { View } from 'react-native';
 import CubeCarousel from '../cube-carousel';
 import Slide, { SlideProps } from '../slide';
@@ -26,9 +26,10 @@ const Collection: React.FC<Props> = ({
   }, [slides]);
 
   const renderSlide = React.useCallback(
-    (item, index) => {
+    (item: SlidePropType, index: number) => {
       return (
         <Slide
+          id={item.id}
           index={index}
           stepIds={ids}
           source={item.source}

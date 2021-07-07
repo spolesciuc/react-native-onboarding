@@ -12,7 +12,7 @@ type Props = OnboardingProps & {
 };
 
 const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
-  { data, duration, color, unfilledColor, height, renderLoader },
+  { data, duration, color, unfilledColor, height, renderLoader, onChange },
   forwardedRef,
 ) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -71,7 +71,16 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
     setCollectionId(id);
   }, [data]);
 
+  React.useEffect(() => {
+    if (onChange && currentCollection) {
+      const slide = currentCollection?.slides[slideIndex];
+      onChange(currentCollection.id, slide?.id);
+    }
+  }, [currentCollection, onChange, slideIndex]);
+
   React.useImperativeHandle(forwardedRef, () => ({
+    collectionId: currentCollection?.id,
+    slideId: currentCollection?.slides[slideIndex]?.id,
     onHide() {
       onHide();
     },
@@ -103,6 +112,7 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
       unfilledColor={unfilledColor}
       height={height}
       renderLoader={renderLoader}
+      onChange={onChange}
     />
   );
 };
