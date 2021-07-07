@@ -1,6 +1,6 @@
 {
   "name": "@stanislavpoleshuk/react-native-onboarding",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A pure JavaScript <Onboarding /> component for react-native",
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
