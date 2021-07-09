@@ -97,7 +97,7 @@ const Slide: React.FC<Props> = ({
           <React.Fragment>
             <Steps
               key={start.toISOString()}
-              index={slideIndex}
+              index={index}
               ids={stepIds}
               isPaused={isPaused}
               ready={ready && index === slideIndex}

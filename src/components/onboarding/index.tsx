@@ -12,7 +12,17 @@ type Props = OnboardingProps & {
 };
 
 const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
-  { data, duration, color, unfilledColor, height, renderLoader, onChange },
+  {
+    data,
+    duration,
+    color,
+    unfilledColor,
+    height,
+    renderLoader,
+    onChange,
+    onShow,
+    onHide,
+  },
   forwardedRef,
 ) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -25,15 +35,24 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
 
   const [slideIndex, setSlideIndex] = React.useState(0);
 
-  const onShow = React.useCallback((nextCollectionId: string) => {
-    setIsVisible(true);
-    setCollectionId(nextCollectionId);
-  }, []);
+  const handleShow = React.useCallback(
+    (nextCollectionId?: string) => {
+      setIsVisible(true);
+      setCollectionId(nextCollectionId);
+      if (onShow) {
+        onShow(nextCollectionId);
+      }
+    },
+    [onShow],
+  );
 
-  const onHide = React.useCallback(() => {
+  const handleHide = React.useCallback(() => {
     setIsVisible(false);
     setCollectionId(undefined);
-  }, []);
+    if (onHide) {
+      onHide(collectionId);
+    }
+  }, [collectionId, onHide]);
 
   const onPrev = React.useCallback(() => {
     const prevIndex = slideIndex - 1;
@@ -52,7 +71,10 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
 
   const onCollectionEnd = React.useCallback(() => {
     setIsVisible(false);
-  }, []);
+    if (onHide) {
+      onHide(collectionId);
+    }
+  }, [collectionId, onHide]);
 
   const onChangeIndex = React.useCallback((index: number) => {
     setSlideIndex(index);
@@ -81,16 +103,16 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
   React.useImperativeHandle(forwardedRef, () => ({
     collectionId: currentCollection?.id,
     slideId: currentCollection?.slides[slideIndex]?.id,
-    onHide() {
-      onHide();
+    hide() {
+      handleHide();
     },
-    onShow(id: string) {
-      onShow(id);
+    show(id: string) {
+      handleShow(id);
     },
-    onPrev() {
+    prev() {
       onPrev();
     },
-    onNext() {
+    next() {
       onNext();
     },
   }));
@@ -100,8 +122,8 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
       duration={duration}
       collections={data}
       isVisible={isVisible}
-      onShow={onShow}
-      onHide={onHide}
+      onShow={handleShow}
+      onHide={handleHide}
       slideIndex={slideIndex}
       onChangeIndex={onChangeIndex}
       onNext={onNext}
