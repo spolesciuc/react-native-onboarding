@@ -80,7 +80,7 @@ const CubeCarousel: React.FC<Props> = ({
         },
       ],
       opacity: scrollX.interpolate({
-        inputRange: [-1, -0.5, 0.5, 1],
+        inputRange: [-0.8, -0.5, 0.5, 0.8],
         outputRange: [0.4, 1, 1, 0.4],
       }),
     };

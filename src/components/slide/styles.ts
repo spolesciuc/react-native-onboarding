@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
   leftContainer: {},
   rightContainer: {},
   image: {
-    ...Proportions.slideSize,
+    // ...Proportions.slideSize,
+    width: '100%',
+    height: '100%',
     position: 'absolute',
   },
   safeArea: {

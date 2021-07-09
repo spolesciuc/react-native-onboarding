@@ -65,7 +65,7 @@ const App = () => {
       </View>
       <Onboarding
         ref={ref}
-        duration={2000}
+        duration={12000}
         color={'red'}
         unfilledColor={'#FFFF'}
         renderLoader={renderLoader}
