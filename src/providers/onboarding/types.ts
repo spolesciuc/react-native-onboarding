@@ -3,8 +3,8 @@ import React from 'react';
 export type OnboardingContextProps = {
   duration: number;
   isVisible: boolean;
-  onShow: (nextCollectionId: string) => void;
-  onHide: () => void;
+  onShow?: (collectionId?: string) => void;
+  onHide?: (collectionId?: string) => void;
   slideIndex: number;
   onNext: () => void;
   onPrev: () => void;

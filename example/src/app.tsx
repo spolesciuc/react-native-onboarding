@@ -10,19 +10,19 @@ const App = () => {
 
   const handlePressSkip = React.useCallback(() => {
     if (ref?.current) {
-      ref.current.onHide();
+      ref.current.hide();
     }
   }, []);
 
   const handlePressPrev = React.useCallback(() => {
     if (ref?.current) {
-      ref.current.onPrev();
+      ref.current.prev();
     }
   }, []);
 
   const handlePressNext = React.useCallback(() => {
     if (ref?.current) {
-      ref.current.onNext();
+      ref.current.next();
     }
   }, []);
 
@@ -39,7 +39,7 @@ const App = () => {
 
   const handleOpen = React.useCallback(() => {
     if (ref?.current) {
-      ref.current.onShow('1');
+      ref.current.show('1');
     }
   }, []);
 
@@ -58,6 +58,14 @@ const App = () => {
     [],
   );
 
+  const onShow = React.useCallback(() => {
+    console.log('@onShow');
+  }, []);
+
+  const onHide = React.useCallback(() => {
+    console.log('@onHide');
+  }, []);
+
   return (
     <View>
       <View style={styles.button}>
@@ -70,6 +78,8 @@ const App = () => {
         unfilledColor={'#FFFF'}
         renderLoader={renderLoader}
         onChange={handleOnChange}
+        onShow={onShow}
+        onHide={onHide}
         data={[
           {
             id: '1',

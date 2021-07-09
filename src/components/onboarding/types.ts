@@ -26,13 +26,15 @@ export type OnboardingProps = {
     collectionId: string | undefined,
     slideId: string | undefined,
   ) => void;
+  onHide?: (nextCollectionId?: string) => void;
+  onShow?: (nextCollectionId?: string) => void;
 };
 
 export type OnboardingHandle = {
   collectionId: string | undefined;
   slideId: string | undefined;
-  onHide: () => void;
-  onShow: (collectionId: string) => void;
-  onNext: () => void;
-  onPrev: () => void;
+  hide: () => void;
+  show: (collectionId: string) => void;
+  next: () => void;
+  prev: () => void;
 };

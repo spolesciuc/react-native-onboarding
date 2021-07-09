@@ -12,8 +12,6 @@ import Context from './context';
 type Props = OnboardingProps & {
   collections: Collections;
   isVisible: boolean;
-  onShow: (nextCollectionId: string) => void;
-  onHide: () => void;
   slideIndex: number;
   onChangeIndex: (index: number) => void;
   onNext: () => void;
