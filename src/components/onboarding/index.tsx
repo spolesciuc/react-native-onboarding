@@ -54,6 +54,13 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
     }
   }, [collectionId, onHide]);
 
+  const onCollectionEnd = React.useCallback(() => {
+    setIsVisible(false);
+    if (onHide) {
+      onHide(collectionId);
+    }
+  }, [collectionId, onHide]);
+
   const onPrev = React.useCallback(() => {
     const prevIndex = slideIndex - 1;
     if (prevIndex >= 0) {
@@ -66,15 +73,10 @@ const Onboarding: React.ForwardRefRenderFunction<OnboardingHandle, Props> = (
     const maxIndex = currentCollection?.slides.length || 0;
     if (nextIndex < maxIndex) {
       setSlideIndex(nextIndex);
+    } else {
+      onCollectionEnd();
     }
-  }, [currentCollection?.slides.length, slideIndex]);
-
-  const onCollectionEnd = React.useCallback(() => {
-    setIsVisible(false);
-    if (onHide) {
-      onHide(collectionId);
-    }
-  }, [collectionId, onHide]);
+  }, [currentCollection?.slides.length, onCollectionEnd, slideIndex]);
 
   const onChangeIndex = React.useCallback((index: number) => {
     setSlideIndex(index);
