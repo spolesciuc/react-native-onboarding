@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Pressable, SafeAreaView, View } from 'react-native';
+import { AppState, Image, Pressable, SafeAreaView, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
 import Steps, { StepsProps } from '../steps';
@@ -35,6 +35,8 @@ const Slide: React.FC<Props> = ({
   } = useCollection();
   const [ready, setReady] = React.useState(false);
   const [start, setStart] = React.useState(new Date());
+  const appState = React.useRef(AppState.currentState);
+  const [, setAppStateVisible] = React.useState(appState.current);
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -81,6 +83,30 @@ const Slide: React.FC<Props> = ({
   const Loader = React.useCallback(() => {
     return renderLoader ? renderLoader() : null;
   }, [renderLoader]);
+
+  const handleAppStateChange = React.useCallback(
+    (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        onPauseEnd();
+      } else {
+        onPauseStart();
+      }
+
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+    },
+    [onPauseEnd, onPauseStart],
+  );
+
+  React.useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, [handleAppStateChange]);
 
   return (
     <View style={styles.wrapper}>
