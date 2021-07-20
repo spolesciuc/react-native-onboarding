@@ -105,7 +105,6 @@ const CubeCarousel: React.FC<Props> = ({
 
   const handleBeforeSnapToItem = React.useCallback(
     (index: number) => {
-      console.log(index, '@index');
       onChangeIndex(index);
     },
     [onChangeIndex],
