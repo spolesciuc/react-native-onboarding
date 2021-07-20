@@ -105,6 +105,7 @@ const CubeCarousel: React.FC<Props> = ({
 
   const handleBeforeSnapToItem = React.useCallback(
     (index: number) => {
+      console.log(index, '@index');
       onChangeIndex(index);
     },
     [onChangeIndex],
@@ -134,6 +135,12 @@ const CubeCarousel: React.FC<Props> = ({
         scrollInterpolator={scrollInterpolator}
         slideInterpolatedStyle={animatedStyles}
         onSnapToItem={handleBeforeSnapToItem}
+        // onScroll={(event) => {
+        //   console.log(event?.nativeEvent);
+        // }}
+        // onBeforeSnapToItem={(index) => {
+        //   console.log(index);
+        // }}
       />
     </View>
   );
