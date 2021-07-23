@@ -35,7 +35,6 @@ const Steps: React.FC<Props> = ({
     resetProgress,
   } = useProgress(duration, onEndAnimate);
 
-  console.log(index, '@index');
   React.useEffect(() => {
     if (ready) {
       if (isPaused) {
