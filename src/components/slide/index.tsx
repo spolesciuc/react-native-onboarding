@@ -2,7 +2,6 @@ import * as React from 'react';
 import { AppState, Image, Pressable, SafeAreaView, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
-// import Gesture from '../gesture';
 import Steps, { StepsProps } from '../steps';
 import styles from './styles';
 import useCollection from '../../hooks/useCollection';
@@ -38,11 +37,6 @@ const Slide: React.FC<Props> = ({
   const [start, setStart] = React.useState(new Date());
   const appState = React.useRef(AppState.currentState);
   const [, setAppStateVisible] = React.useState(appState.current);
-  //
-  // const isLastSlide = React.useMemo(
-  //   () => slideIndex === index,
-  //   [index, slideIndex],
-  // );
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -107,17 +101,6 @@ const Slide: React.FC<Props> = ({
     [onPauseEnd, onPauseStart],
   );
 
-  // const handleSwipeLeft = React.useCallback(() => {
-  //   if (isLastSlide) {
-  //     const t = setTimeout(() => {
-  //       handleNext();
-  //       clearTimeout(t);
-  //     }, 10);
-  //   }
-  // }, [handleNext, isLastSlide]);
-  //
-  // const handleSwipeRight = React.useCallback(() => {}, []);
-
   React.useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -126,7 +109,6 @@ const Slide: React.FC<Props> = ({
   }, [handleAppStateChange]);
 
   return (
-    // <Gesture onSwipeLeft={handleSwipeLeft} onSwipeRight={handleSwipeRight}>
     <View style={styles.wrapper}>
       <Image
         source={source}
@@ -172,7 +154,6 @@ const Slide: React.FC<Props> = ({
         )}
       </SafeAreaView>
     </View>
-    // </Gesture>
   );
 };
 

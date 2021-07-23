@@ -139,6 +139,7 @@ const CubeCarousel: React.FC<Props> = ({
         // @ts-ignore
         disableIntervalMomentum={true}
         removeClippedSubviews={true}
+        pagingEnabled={true}
       />
     </View>
   );
