@@ -1,29 +1,44 @@
 import * as React from 'react';
-import GestureRecognizer from '../swipe-gestures';
+import { PanResponder, View } from 'react-native';
 import styles from './styles';
 
 type Props = {
-  onSwipeLeft: () => void;
-  onSwipeRight: () => void;
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
+  offset?: number;
 };
 
 const Gesture: React.FC<Props> = ({ children, onSwipeLeft, onSwipeRight }) => {
-  const config = React.useMemo(
-    () => ({
-      velocityThreshold: 0.2,
-      directionalOffsetThreshold: 50,
-    }),
-    [],
+  const panResponder = React.useMemo(
+    () =>
+      PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onPanResponderRelease: (_, gestureState) => {
+          let x = gestureState.dx;
+          let y = gestureState.dy;
+
+          console.log('131221');
+
+          if (Math.abs(x) > Math.abs(y)) {
+            if (x >= 0) {
+              if (onSwipeRight) {
+                onSwipeRight();
+              }
+            } else {
+              if (onSwipeLeft) {
+                onSwipeLeft();
+              }
+            }
+          }
+        },
+      }),
+    [onSwipeLeft, onSwipeRight],
   );
 
   return (
-    <GestureRecognizer
-      onSwipeLeft={onSwipeLeft}
-      onSwipeRight={onSwipeRight}
-      config={config}
-      style={styles.wrapper}>
+    <View {...panResponder.panHandlers} style={styles.wrapper}>
       {children}
-    </GestureRecognizer>
+    </View>
   );
 };
 

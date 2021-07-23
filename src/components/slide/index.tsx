@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppState, Image, Pressable, SafeAreaView, View } from 'react-native';
 import { SlidePropType } from '../onboarding/types';
 import BottomBar from '../bottom-bar';
-import Gesture from '../gesture';
+// import Gesture from '../gesture';
 import Steps, { StepsProps } from '../steps';
 import styles from './styles';
 import useCollection from '../../hooks/useCollection';
@@ -38,11 +38,11 @@ const Slide: React.FC<Props> = ({
   const [start, setStart] = React.useState(new Date());
   const appState = React.useRef(AppState.currentState);
   const [, setAppStateVisible] = React.useState(appState.current);
-
-  const isLastSlide = React.useMemo(
-    () => slideIndex === index,
-    [index, slideIndex],
-  );
+  //
+  // const isLastSlide = React.useMemo(
+  //   () => slideIndex === index,
+  //   [index, slideIndex],
+  // );
 
   const onPauseStart = React.useCallback(() => {
     setIsPaused(true);
@@ -107,16 +107,16 @@ const Slide: React.FC<Props> = ({
     [onPauseEnd, onPauseStart],
   );
 
-  const handleSwipeLeft = React.useCallback(() => {
-    if (isLastSlide) {
-      const t = setTimeout(() => {
-        handleNext();
-        clearTimeout(t);
-      }, 250);
-    }
-  }, [handleNext, isLastSlide]);
-
-  const handleSwipeRight = React.useCallback(() => {}, []);
+  // const handleSwipeLeft = React.useCallback(() => {
+  //   if (isLastSlide) {
+  //     const t = setTimeout(() => {
+  //       handleNext();
+  //       clearTimeout(t);
+  //     }, 10);
+  //   }
+  // }, [handleNext, isLastSlide]);
+  //
+  // const handleSwipeRight = React.useCallback(() => {}, []);
 
   React.useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
@@ -126,53 +126,53 @@ const Slide: React.FC<Props> = ({
   }, [handleAppStateChange]);
 
   return (
-    <Gesture onSwipeLeft={handleSwipeLeft} onSwipeRight={handleSwipeRight}>
-      <View style={styles.wrapper}>
-        <Image
-          source={source}
-          onLoadStart={handleLoadStart}
-          onLoadEnd={handleLoadEnd}
-          style={styles.image}
-        />
-        <SafeAreaView style={styles.safeArea}>
-          {loading ? (
-            <Loader />
-          ) : (
-            <React.Fragment>
-              <Steps
-                key={start.toISOString()}
-                index={index}
-                ids={stepIds}
-                isPaused={isPaused}
-                ready={ready && index === slideIndex}
-                duration={duration}
-                onEndAnimate={handleProgressEnd}
-                color={color}
-                unfilledColor={unfilledColor}
-                height={height}
+    // <Gesture onSwipeLeft={handleSwipeLeft} onSwipeRight={handleSwipeRight}>
+    <View style={styles.wrapper}>
+      <Image
+        source={source}
+        onLoadStart={handleLoadStart}
+        onLoadEnd={handleLoadEnd}
+        style={styles.image}
+      />
+      <SafeAreaView style={styles.safeArea}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <React.Fragment>
+            <Steps
+              key={start.toISOString()}
+              index={index}
+              ids={stepIds}
+              isPaused={isPaused}
+              ready={ready && index === slideIndex}
+              duration={duration}
+              onEndAnimate={handleProgressEnd}
+              color={color}
+              unfilledColor={unfilledColor}
+              height={height}
+            />
+            <View style={styles.content}>
+              <Pressable
+                style={[styles.sideContainer, styles.leftContainer]}
+                onPress={handlePrev}
+                onLongPress={onPauseStart}
+                onPressOut={onPauseEnd}
+                delayLongPress={300}
               />
-              <View style={styles.content}>
-                <Pressable
-                  style={[styles.sideContainer, styles.leftContainer]}
-                  onPress={handlePrev}
-                  onLongPress={onPauseStart}
-                  onPressOut={onPauseEnd}
-                  delayLongPress={300}
-                />
-                <Pressable
-                  style={[styles.sideContainer, styles.rightContainer]}
-                  onPress={handleNext}
-                  onLongPress={onPauseStart}
-                  onPressOut={onPauseEnd}
-                  delayLongPress={300}
-                />
-              </View>
-              {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
-            </React.Fragment>
-          )}
-        </SafeAreaView>
-      </View>
-    </Gesture>
+              <Pressable
+                style={[styles.sideContainer, styles.rightContainer]}
+                onPress={handleNext}
+                onLongPress={onPauseStart}
+                onPressOut={onPauseEnd}
+                delayLongPress={300}
+              />
+            </View>
+            {renderBottomBar ? <BottomBar render={renderBottomBar} /> : null}
+          </React.Fragment>
+        )}
+      </SafeAreaView>
+    </View>
+    // </Gesture>
   );
 };
 

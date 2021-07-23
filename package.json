@@ -58,7 +58,7 @@
     "react-native-typescript-transformer": "^1.2.13",
     "tslib": "^2.3.0",
     "typescript": "^4.3.4",
-    "react-native-snap-carousel": "^3.9.1"
+    "react-native-snap-carousel": "^4.0.0-beta.6"
   },
   "resolutions": {
     "@types/react": "^17"
