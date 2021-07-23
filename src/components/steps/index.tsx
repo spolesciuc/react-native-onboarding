@@ -26,8 +26,14 @@ const Steps: React.FC<Props> = ({
   ready,
   onEndAnimate,
 }) => {
-  const { progress, pauseTimer, startTimer, continueTimer, resetTimer } =
-    useProgress(duration, onEndAnimate);
+  const {
+    progress,
+    pauseTimer,
+    startTimer,
+    continueTimer,
+    resetTimer,
+    resetProgress,
+  } = useProgress(duration, onEndAnimate);
 
   React.useEffect(() => {
     if (ready) {
@@ -42,12 +48,14 @@ const Steps: React.FC<Props> = ({
   React.useEffect(() => {
     if (ready) {
       startTimer();
+    } else {
+      resetProgress();
     }
 
     return () => {
       resetTimer();
     };
-  }, [startTimer, resetTimer, ready]);
+  }, [startTimer, resetTimer, ready, resetProgress]);
 
   return (
     <View style={styles.wrapper}>

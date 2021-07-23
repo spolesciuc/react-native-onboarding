@@ -19,9 +19,12 @@ const useProgress = (
     }),
   );
 
+  const resetProgress = React.useCallback(() => {
+    progress.setValue(0);
+  }, [progress]);
+
   const resetTimer = React.useCallback(() => {
     pauseDuration.current = 0;
-    progress.setValue(0);
     progress.stopAnimation();
   }, [progress]);
 
@@ -34,7 +37,6 @@ const useProgress = (
   }, [onEndAnimate, progress, running]);
 
   const startTimer = React.useCallback(() => {
-    resetTimer();
     animation.current = Animated.timing(progress, {
       toValue: 1,
       duration: defaultDuration,
@@ -44,7 +46,7 @@ const useProgress = (
     });
     animation.current.start(handleEndAnimate);
     setRunning(true);
-  }, [defaultDuration, handleEndAnimate, progress, resetTimer]);
+  }, [defaultDuration, handleEndAnimate, progress]);
 
   const continueTimer = React.useCallback(() => {
     const duration = defaultDuration - pauseDuration.current;
@@ -66,7 +68,14 @@ const useProgress = (
     pauseDuration.current = value * defaultDuration;
   }, [defaultDuration, progress]);
 
-  return { progress, startTimer, continueTimer, pauseTimer, resetTimer };
+  return {
+    progress,
+    startTimer,
+    continueTimer,
+    pauseTimer,
+    resetTimer,
+    resetProgress,
+  };
 };
 
 export default useProgress;

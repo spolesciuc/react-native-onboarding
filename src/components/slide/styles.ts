@@ -1,18 +1,23 @@
 import { StyleSheet } from 'react-native';
 import Proportions from '../../utils/proportions';
 
+const SECTION_WIDTH = Proportions.slideSize.width / 4;
+
 const styles = StyleSheet.create({
   wrapper: {
     ...Proportions.slideSize,
   },
   sideContainer: {
-    width: Proportions.slideSize.width / 2,
     height: Proportions.slideSize.height,
     zIndex: 1,
     elevation: 1,
   },
-  leftContainer: {},
-  rightContainer: {},
+  leftContainer: {
+    width: SECTION_WIDTH,
+  },
+  rightContainer: {
+    width: SECTION_WIDTH * 3,
+  },
   image: {
     ...Proportions.slideSize,
     position: 'absolute',

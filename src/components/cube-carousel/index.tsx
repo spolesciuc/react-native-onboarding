@@ -2,6 +2,7 @@ import { Dimensions, Platform, View } from 'react-native';
 import { SlidePropType, Slides } from '../onboarding/types';
 import Carousel, { getInputRangeFromIndexes } from 'react-native-snap-carousel';
 import React from 'react';
+import styles from './styles';
 
 const Window = Dimensions.get('window');
 
@@ -105,7 +106,6 @@ const CubeCarousel: React.FC<Props> = ({
 
   const handleBeforeSnapToItem = React.useCallback(
     (index: number) => {
-      console.log(index, '@index');
       onChangeIndex(index);
     },
     [onChangeIndex],
@@ -116,14 +116,7 @@ const CubeCarousel: React.FC<Props> = ({
   }, [slideIndex]);
 
   return (
-    <View
-      style={{
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width,
-        height: height,
-        backgroundColor: '#282828',
-      }}>
+    <View style={styles.wrapper}>
       <Carousel
         ref={ref}
         containerCustomStyle={{ width }}
@@ -135,12 +128,18 @@ const CubeCarousel: React.FC<Props> = ({
         scrollInterpolator={scrollInterpolator}
         slideInterpolatedStyle={animatedStyles}
         onSnapToItem={handleBeforeSnapToItem}
-        // onScroll={(event) => {
-        //   console.log(event?.nativeEvent);
-        // }}
-        // onBeforeSnapToItem={(index) => {
-        //   console.log(index);
-        // }}
+        vertical={false}
+        useExperimentalSnap={true}
+        activeSlideAlignment={'center'}
+        layout={'default'}
+        inactiveSlideOpacity={1}
+        inactiveSlideScale={1}
+        enableSnap={true}
+        shouldOptimizeUpdates
+        // @ts-ignore
+        disableIntervalMomentum={true}
+        removeClippedSubviews={true}
+        pagingEnabled={true}
       />
     </View>
   );
