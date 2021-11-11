@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "lib/",
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "jsx": "react",
@@ -21,5 +22,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedParameters": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ]
 }
