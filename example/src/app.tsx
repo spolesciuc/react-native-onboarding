@@ -86,22 +86,22 @@ const App = () => {
             slides: [
               {
                 id: 'onboarding_1_welcome',
-                source: require('../assets/Onbording_1.webp'),
+                source: require('../assets/Onbording_1.png'),
                 renderBottomBar: renderBottomBar,
               },
               {
                 id: 'onboarding_2_choose',
-                source: require('../assets/Onbording_2.webp'),
+                source: require('../assets/Onbording_2.png'),
                 renderBottomBar: renderBottomBar,
               },
               {
                 id: 'onboarding_3_copy',
-                source: require('../assets/Onbording_3.webp'),
+                source: require('../assets/Onbording_3.png'),
                 renderBottomBar: renderBottomBar,
               },
               {
                 id: 'onboarding_4_bet',
-                source: require('../assets/Onbording_4.webp'),
+                source: require('../assets/Onbording_4.png'),
                 renderBottomBar: renderBottomBar,
               },
             ],
